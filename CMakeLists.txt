@@ -33,7 +33,8 @@ if(NOT CMAKE_CUDA_HOST_COMPILER)
     set(CMAKE_CUDA_HOST_COMPILER "${CMAKE_CXX_COMPILER}")
 endif()
 
-enable_language(CUDA)
+# enable_language(CUDA)
+enable_language(CXX)
 
 # Used when creating special builds
 set(PROJECT_VERSION_SUFFIX "-beta")
@@ -55,9 +56,9 @@ option(ENABLE_SANITIZER "Enabled sanitized build" OFF)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" )
 
 include(ConfigVersion)
-include(ConfigBuildTree)
+# include(ConfigBuildTree)
 include(ConfigCompiler)
-include(ConfigCUDA)
+# include(ConfigCUDA)
 include(ConfigCCache)
 if(BUILD_PYTHON)
     include(ConfigPython)

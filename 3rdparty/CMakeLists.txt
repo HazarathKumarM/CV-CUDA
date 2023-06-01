@@ -18,7 +18,7 @@ set(CMAKE_FOLDER 3rdparty)
 # disable all warnings
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -w")
-set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -w")
+# set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -w")
 
 set(CMAKE_POSITION_INDEPENDENT_CODE on)
 

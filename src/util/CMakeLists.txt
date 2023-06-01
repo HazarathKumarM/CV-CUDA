@@ -13,7 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-find_package(CUDAToolkit REQUIRED)
+# find_package(CUDAToolkit REQUIRED)
+option(ENABLE_CUDA "Enable CUDA support" OFF)
+if(ENABLE_CUDA)
+    find_package(CUDAToolkit)
+endif()
 
 set(CMAKE_POSITION_INDEPENDENT_CODE on)
 
@@ -183,13 +187,13 @@ target_include_directories(nvcv_util
         ../core/include
 )
 
-target_link_libraries(nvcv_util
-    PUBLIC
-        nvcv_util_sanitizer
-        nvcv_types_headers
-        CUDA::cudart_static
-        nvcv_util_compat
-)
+# target_link_libraries(nvcv_util
+#     PUBLIC
+#         nvcv_util_sanitizer
+#         nvcv_types_headers
+#         CUDA::cudart_static
+#         nvcv_util_compat
+# )
 
 target_compile_definitions(nvcv_util
     PUBLIC
