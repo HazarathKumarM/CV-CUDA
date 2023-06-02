@@ -19,7 +19,7 @@
 
 #include "HandleManagerImpl.hpp"
 
-#include <util/Assert.h>
+#include "../../util/Assert.h"
 
 namespace nvcv::priv {
 

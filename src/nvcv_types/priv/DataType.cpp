@@ -21,8 +21,8 @@
 #include "Exception.hpp"
 #include "ImageFormat.hpp"
 
-#include <util/Assert.h>
-#include <util/Math.hpp>
+#include "../../util/Assert.h"
+#include "../../util/Math.hpp"
 
 #include <sstream>
 

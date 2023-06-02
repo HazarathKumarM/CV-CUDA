@@ -24,7 +24,7 @@
 #include "priv/Status.hpp"
 #include "priv/SymbolVersioning.hpp"
 
-#include <nvcv/ImageBatch.h>
+#include "include/nvcv/ImageBatch.h"
 
 namespace priv = nvcv::priv;
 

@@ -18,7 +18,7 @@
 #ifndef NVCV_FORMAT_PRIV_COLORSPEC_HPP
 #define NVCV_FORMAT_PRIV_COLORSPEC_HPP
 
-#include <nvcv/ColorSpec.h>
+#include "../include/nvcv/ColorSpec.h"
 
 #include <memory> // for std::pair
 

@@ -26,8 +26,8 @@
 
 #include "detail/FormatUtils.h"
 
-#include <nvcv/Export.h>
-#include <nvcv/Status.h>
+#include "Export.h"
+#include "Status.h"
 
 #ifdef __cplusplus
 extern "C"

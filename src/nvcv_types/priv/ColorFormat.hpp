@@ -18,7 +18,7 @@
 #ifndef NVCV_FORMAT_PRIV_COLORFORMAT_HPP
 #define NVCV_FORMAT_PRIV_COLORFORMAT_HPP
 
-#include <nvcv/ColorSpec.h>
+#include "../include/nvcv/ColorSpec.h"
 
 namespace nvcv::priv {
 

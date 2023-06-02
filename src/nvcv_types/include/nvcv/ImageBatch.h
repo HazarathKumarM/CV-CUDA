@@ -33,7 +33,7 @@
 #include "alloc/Requirements.h"
 #include "detail/CudaFwd.h"
 
-#include <nvcv/ImageFormat.h>
+#include "ImageFormat.h"
 
 #ifdef __cplusplus
 extern "C"

@@ -20,8 +20,8 @@
 #include "Exception.hpp"
 #include "TLS.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <util/Assert.h>
+#include "../include/nvcv/Exception.hpp"
+#include "../../util/Assert.h"
 
 #include <cstring>
 

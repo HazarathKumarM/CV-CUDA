@@ -21,7 +21,7 @@
 #include "ICoreObject.hpp"
 #include "ImageFormat.hpp"
 
-#include <nvcv/ImageBatch.h>
+#include "../include/nvcv/ImageBatch.h"
 
 namespace nvcv::priv {
 

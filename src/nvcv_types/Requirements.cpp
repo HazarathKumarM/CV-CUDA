@@ -21,7 +21,7 @@
 #include "priv/Status.hpp"
 #include "priv/SymbolVersioning.hpp"
 
-#include <nvcv/alloc/Requirements.h>
+#include "include/nvcv/alloc/Requirements.h"
 
 namespace priv = nvcv::priv;
 

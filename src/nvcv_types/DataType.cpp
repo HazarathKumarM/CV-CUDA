@@ -22,9 +22,9 @@
 #include "priv/SymbolVersioning.hpp"
 #include "priv/TLS.hpp"
 
-#include <nvcv/DataType.h>
-#include <util/Assert.h>
-#include <util/String.hpp>
+#include "include/nvcv/DataType.h"
+#include "../util/Assert.h"
+#include "../util/String.hpp"
 
 #include <cstring>
 

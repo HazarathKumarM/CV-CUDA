@@ -20,7 +20,7 @@
 
 #include "IImageBatch.hpp"
 
-#include <cuda_runtime.h>
+// #include <cuda_runtime.h>
 
 namespace nvcv::priv {
 
@@ -74,7 +74,7 @@ private:
     void doUpdateCache() const;
 
     // TODO: must be retrieved from the resource allocator;
-    cudaEvent_t m_evPostFence;
+    // cudaEvent_t m_evPostFence;
 
     // Assumes there's enough space for image.
     // Does not update dirty count

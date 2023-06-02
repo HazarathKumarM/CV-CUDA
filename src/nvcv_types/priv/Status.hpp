@@ -18,7 +18,7 @@
 #ifndef NVCV_CORE_PRIV_STATUS_HPP
 #define NVCV_CORE_PRIV_STATUS_HPP
 
-#include <nvcv/Status.h>
+#include "../include/nvcv/Status.h"
 
 #include <exception>
 #include <iosfwd>

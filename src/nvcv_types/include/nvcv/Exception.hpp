@@ -24,7 +24,7 @@
 #ifndef NVCV_EXCEPTION_HPP
 #define NVCV_EXCEPTION_HPP
 
-#include <nvcv/Status.hpp>
+#include "Status.hpp"
 
 #include <cassert>
 #include <cstring>

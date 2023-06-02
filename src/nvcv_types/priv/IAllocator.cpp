@@ -20,7 +20,7 @@
 #include "AllocatorManager.hpp"
 #include "IContext.hpp"
 
-#include <util/Math.hpp>
+#include "../../util/Math.hpp"
 
 namespace nvcv::priv {
 

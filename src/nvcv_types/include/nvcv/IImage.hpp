@@ -23,7 +23,7 @@
 #include "ImageData.hpp"
 #include "Size.hpp"
 
-#include <nvcv/ImageFormat.hpp>
+#include "ImageFormat.hpp"
 
 #include <type_traits> // for std::aligned_storage
 

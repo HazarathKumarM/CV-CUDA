@@ -25,10 +25,10 @@
 #include "TensorLayout.hpp"
 #include "TensorShape.hpp"
 
-#include <cuda_runtime.h>
-#include <util/Assert.h>
-#include <util/CheckError.hpp>
-#include <util/Math.hpp>
+// #include <cuda_runtime.h>
+#include "../../util/Assert.h"
+#include "../../util/CheckError.hpp"
+#include "../../util/Math.hpp"
 
 #include <cmath>
 #include <numeric>

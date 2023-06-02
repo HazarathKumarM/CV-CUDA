@@ -22,8 +22,8 @@
 #include "priv/Status.hpp"
 #include "priv/SymbolVersioning.hpp"
 
-#include <nvcv/alloc/Allocator.h>
-#include <util/Assert.h>
+#include "include/nvcv/alloc/Allocator.h"
+#include "../util/Assert.h"
 
 #include <memory>
 

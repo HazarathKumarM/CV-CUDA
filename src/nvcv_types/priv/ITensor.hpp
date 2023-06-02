@@ -21,7 +21,7 @@
 #include "ICoreObject.hpp"
 #include "ImageFormat.hpp"
 
-#include <nvcv/Tensor.h>
+#include "../include/nvcv/Tensor.h"
 
 namespace nvcv::priv {
 

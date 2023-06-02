@@ -22,7 +22,7 @@
 #include "priv/SymbolVersioning.hpp"
 #include "priv/TensorManager.hpp"
 
-#include <nvcv/Config.h>
+#include "include/nvcv/Config.h"
 
 namespace priv = nvcv::priv;
 

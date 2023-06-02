@@ -17,7 +17,7 @@
 
 #include "CheckError.hpp"
 
-#include <cuda_runtime.h>
+// #include <cuda_runtime.h>
 
 #include <cstdarg>
 #include <regex>
@@ -89,38 +89,38 @@ std::string FormatErrorMessage(const std::string_view &errname, const std::strin
 
 } // namespace detail
 
-NVCVStatus TranslateError(cudaError_t err)
-{
-    switch (err)
-    {
-    case cudaErrorMemoryAllocation:
-        return NVCV_ERROR_OUT_OF_MEMORY;
+// NVCVStatus TranslateError(cudaError_t err)
+// {
+//     switch (err)
+//     {
+//     case cudaErrorMemoryAllocation:
+//         return NVCV_ERROR_OUT_OF_MEMORY;
 
-    case cudaErrorNotReady:
-        return NVCV_ERROR_NOT_READY;
+//     case cudaErrorNotReady:
+//         return NVCV_ERROR_NOT_READY;
 
-    case cudaErrorInvalidValue:
-        return NVCV_ERROR_INVALID_ARGUMENT;
+//     case cudaErrorInvalidValue:
+//         return NVCV_ERROR_INVALID_ARGUMENT;
 
-    default:
-        return NVCV_ERROR_INTERNAL;
-    }
-}
+//     default:
+//         return NVCV_ERROR_INTERNAL;
+//     }
+// }
 
-void PreprocessError(cudaError_t err)
-{
-    // consume the error
-    cudaGetLastError();
-}
+// void PreprocessError(cudaError_t err)
+// {
+//     // consume the error
+//     cudaGetLastError();
+// }
 
-const char *ToString(cudaError_t err, const char **perrdescr)
-{
-    if (perrdescr != nullptr)
-    {
-        *perrdescr = cudaGetErrorString(err);
-    }
+// const char *ToString(cudaError_t err, const char **perrdescr)
+// {
+//     if (perrdescr != nullptr)
+//     {
+//         *perrdescr = cudaGetErrorString(err);
+//     }
 
-    return cudaGetErrorName(err);
-}
+//     return cudaGetErrorName(err);
+// }
 
 } // namespace nvcv::util

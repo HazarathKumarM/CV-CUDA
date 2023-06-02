@@ -29,7 +29,7 @@
 #include "DataType.hpp"
 #include "ImageFormat.h"
 
-#include <nvcv/Size.hpp>
+#include "Size.hpp"
 
 #include <array>
 #include <iostream>

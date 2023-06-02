@@ -20,7 +20,7 @@
 #include "priv/Status.hpp"
 #include "priv/SymbolVersioning.hpp"
 
-#include <nvcv/TensorData.h>
+#include "include/nvcv/TensorData.h"
 
 namespace priv = nvcv::priv;
 

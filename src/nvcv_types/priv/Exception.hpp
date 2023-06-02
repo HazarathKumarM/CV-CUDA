@@ -18,7 +18,7 @@
 #ifndef NVCV_CORE_PRIV_EXCEPTION_HPP
 #define NVCV_CORE_PRIV_EXCEPTION_HPP
 
-#include <nvcv/Status.h>
+#include "../include/nvcv/Status.h"
 
 #include <cstring>
 

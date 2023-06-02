@@ -18,7 +18,7 @@
 #ifndef NVCV_CORE_PRIV_SYMBOLVERSIONING_HPP
 #define NVCV_CORE_PRIV_SYMBOLVERSIONING_HPP
 
-#include <util/SymbolVersioning.hpp>
+#include "../../util/SymbolVersioning.hpp"
 
 #define NVCV_DEFINE_API(...)     NVCV_PROJ_DEFINE_API(NVCV, __VA_ARGS__)
 #define NVCV_DEFINE_OLD_API(...) NVCV_PROJ_DEFINE_OLD_API(NVCV, __VA_ARGS__)

@@ -21,9 +21,9 @@
 #include "Exception.hpp"
 #include "TLS.hpp"
 
-#include <util/Assert.h>
-#include <util/Math.hpp>
-#include <util/String.hpp>
+#include "../../util/Assert.h"
+#include "../../util/Math.hpp"
+#include "../../util/String.hpp"
 
 #include <map>
 

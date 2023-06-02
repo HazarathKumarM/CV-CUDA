@@ -23,7 +23,7 @@
 #include "priv/SymbolVersioning.hpp"
 #include "priv/TLS.hpp"
 
-#include <util/String.hpp>
+#include "../util/String.hpp"
 
 #include <cstring>
 

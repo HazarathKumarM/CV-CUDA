@@ -20,7 +20,7 @@
 
 #include "ITensor.hpp"
 
-#include <cuda_runtime.h>
+// #include <cuda_runtime.h>
 
 namespace nvcv::priv {
 

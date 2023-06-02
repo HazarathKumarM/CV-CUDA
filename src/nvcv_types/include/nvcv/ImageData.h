@@ -20,8 +20,8 @@
 
 #include "detail/CudaFwd.h"
 
-#include <nvcv/DataType.h>
-#include <nvcv/ImageFormat.h>
+#include "DataType.h"
+#include "ImageFormat.h"
 #include <stdint.h>
 
 typedef struct NVCVImagePlaneStridedRec

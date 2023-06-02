@@ -23,8 +23,8 @@
 #include "Exception.hpp"
 #include "Size.hpp"
 
-#include <nvcv/ImageFormat.h>
-#include <util/StaticVector.hpp>
+#include "../include/nvcv/ImageFormat.h"
+#include "../../util/StaticVector.hpp"
 
 #include <array>
 #include <optional>

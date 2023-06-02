@@ -18,7 +18,7 @@
 #ifndef NVCV_CORE_PRIV_TENSORLAYOUT_HPP
 #define NVCV_CORE_PRIV_TENSORLAYOUT_HPP
 
-#include <nvcv/TensorData.h>
+#include "../include/nvcv/TensorData.h"
 
 namespace nvcv::priv {
 

@@ -18,7 +18,7 @@
 #ifndef NVCV_CORE_PRIV_SIZE_HPP
 #define NVCV_CORE_PRIV_SIZE_HPP
 
-#include <util/Size.hpp>
+#include "../../util/Size.hpp"
 
 namespace nvcv::priv {
 

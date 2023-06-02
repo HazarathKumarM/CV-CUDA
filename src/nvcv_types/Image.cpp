@@ -24,7 +24,7 @@
 #include "priv/Status.hpp"
 #include "priv/SymbolVersioning.hpp"
 
-#include <nvcv/Image.h>
+#include "include/nvcv/Image.h"
 
 namespace priv = nvcv::priv;
 

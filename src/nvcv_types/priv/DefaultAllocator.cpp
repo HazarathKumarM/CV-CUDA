@@ -17,9 +17,9 @@
 
 #include "DefaultAllocator.hpp"
 
-#include <cuda_runtime.h>
-#include <nvcv/Version.h>
-#include <util/CheckError.hpp>
+// #include <cuda_runtime.h>
+#include "../include/nvcv/Version.h"
+#include "../../util/CheckError.hpp"
 
 #include <algorithm>
 #include <cstdlib> // for aligned_alloc
@@ -41,7 +41,7 @@ void DefaultAllocator::doFreeHostMem(void *ptr, int64_t size, int32_t align) noe
 void *DefaultAllocator::doAllocHostPinnedMem(int64_t size, int32_t align)
 {
     void *ptr = nullptr;
-    NVCV_CHECK_THROW(::cudaHostAlloc(&ptr, size, cudaHostAllocWriteCombined | cudaHostAllocMapped));
+    NVCV_CHECK_THROqW(::cudaHostAlloc(&ptr, size, cudaHostAllocWriteCombined | cudaHostAllocMapped));
     // TODO: can we do better than this?
     if (reinterpret_cast<uintptr_t>(ptr) % align != 0)
     {

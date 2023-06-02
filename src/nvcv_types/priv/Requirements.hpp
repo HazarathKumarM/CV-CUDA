@@ -18,7 +18,7 @@
 #ifndef NVCV_CORE_PRIV_REQUIREMENTS_HPP
 #define NVCV_CORE_PRIV_REQUIREMENTS_HPP
 
-#include <nvcv/alloc/Requirements.h>
+#include "../include/nvcv/alloc/Requirements.h"
 
 namespace nvcv::priv {
 

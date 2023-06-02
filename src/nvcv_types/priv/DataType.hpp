@@ -20,7 +20,7 @@
 
 #include "ImageFormat.hpp"
 
-#include <nvcv/DataType.h>
+#include "../include/nvcv/DataType.h"
 
 #include <string>
 

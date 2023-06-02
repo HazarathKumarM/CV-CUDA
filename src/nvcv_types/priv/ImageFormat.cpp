@@ -23,7 +23,7 @@
 #include "DataType.hpp"
 #include "Exception.hpp"
 
-#include <util/Assert.h>
+#include "../../util/Assert.h"
 
 #include <map>
 #include <sstream>

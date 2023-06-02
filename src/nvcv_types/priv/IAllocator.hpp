@@ -20,7 +20,7 @@
 
 #include "ICoreObject.hpp"
 
-#include <nvcv/alloc/Allocator.h>
+#include "../include/nvcv/alloc/Allocator.h"
 
 #include <memory>
 

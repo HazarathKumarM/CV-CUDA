@@ -21,9 +21,9 @@
 #include "priv/Status.hpp"
 #include "priv/SymbolVersioning.hpp"
 
-#include <nvcv/DataLayout.h>
-#include <nvcv/Status.h>
-#include <util/Assert.h>
+#include "include/nvcv/DataLayout.h"
+#include "include/nvcv/Status.h"
+#include "../util/Assert.h"
 
 #include <cstring>
 

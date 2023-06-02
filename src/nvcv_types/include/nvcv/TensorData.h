@@ -20,7 +20,7 @@
 
 #include "TensorLayout.h"
 
-#include <nvcv/ImageFormat.h>
+#include "ImageFormat.h"
 
 #ifdef __cplusplus
 extern "C"

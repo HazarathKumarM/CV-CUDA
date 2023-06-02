@@ -20,7 +20,7 @@
 
 #include "ImageData.h"
 
-#include <nvcv/ImageFormat.h>
+#include "ImageFormat.h"
 
 /** Stores the image plane in a variable shape image batch. */
 typedef struct NVCVImageBatchVarShapeBufferStridedRec

@@ -19,9 +19,9 @@
 
 #include "DefaultAllocator.hpp"
 
-#include <cuda_runtime.h>
-#include <nvcv/Version.h>
-#include <util/CheckError.hpp>
+// #include <cuda_runtime.h>
+#include "../include/nvcv/Version.h"
+#include "../../util/CheckError.hpp"
 
 #include <algorithm>
 #include <cstdlib> // for aligned_alloc

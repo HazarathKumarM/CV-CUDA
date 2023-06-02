@@ -18,8 +18,8 @@
 #ifndef NVCV_CORE_PRIV_VERSION_HPP
 #define NVCV_CORE_PRIV_VERSION_HPP
 
-#include <nvcv/Version.h>
-#include <util/Version.hpp>
+#include "../include/nvcv/Version.h"
+#include "../../util/Version.hpp"
 
 namespace nvcv::priv {
 

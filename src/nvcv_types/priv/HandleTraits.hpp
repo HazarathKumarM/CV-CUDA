@@ -18,8 +18,8 @@
 #ifndef NVCV_PRIV_CORE_HANDLE_TRAITS_HPP
 #define NVCV_PRIV_CORE_HANDLE_TRAITS_HPP
 
-#include <nvcv/Fwd.h>
-#include <nvcv/alloc/Fwd.h>
+#include "../include/nvcv/Fwd.h"
+#include "../include/nvcv/alloc/Fwd.h"
 
 namespace nvcv::priv {
 

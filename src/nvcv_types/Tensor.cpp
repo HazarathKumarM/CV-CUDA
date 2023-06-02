@@ -31,7 +31,7 @@
 #include "priv/TensorManager.hpp"
 #include "priv/TensorWrapDataStrided.hpp"
 
-#include <nvcv/Tensor.h>
+#include "include/nvcv/Tensor.h"
 
 #include <algorithm>
 

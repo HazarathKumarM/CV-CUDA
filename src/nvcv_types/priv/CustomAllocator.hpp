@@ -20,7 +20,7 @@
 
 #include "IAllocator.hpp"
 
-#include <nvcv/alloc/Allocator.h>
+#include "../include/nvcv/alloc/Allocator.h"
 
 namespace nvcv::priv {
 

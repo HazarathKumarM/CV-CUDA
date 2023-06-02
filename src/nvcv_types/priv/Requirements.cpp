@@ -19,7 +19,7 @@
 
 #include "Exception.hpp"
 
-#include <util/Math.hpp>
+#include "../../util/Math.hpp"
 
 #include <algorithm>
 #include <cmath>

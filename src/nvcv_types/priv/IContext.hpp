@@ -18,7 +18,7 @@
 #ifndef NVCV_PRIV_CORE_ICONTEXT_HPP
 #define NVCV_PRIV_CORE_ICONTEXT_HPP
 
-#include <nvcv/Fwd.h>
+#include "../include/nvcv/Fwd.h"
 
 #include <tuple>
 

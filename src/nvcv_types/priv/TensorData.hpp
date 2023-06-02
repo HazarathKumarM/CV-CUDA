@@ -22,7 +22,7 @@
 #include "ImageFormat.hpp"
 #include "Size.hpp"
 
-#include <nvcv/TensorData.h>
+#include "../include/nvcv/TensorData.h"
 
 namespace nvcv::priv {
 

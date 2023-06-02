@@ -17,7 +17,7 @@
 
 #include "priv/SymbolVersioning.hpp"
 
-#include <nvcv/Version.h>
+#include "include/nvcv/Version.h"
 
 NVCV_DEFINE_API(0, 0, uint32_t, nvcvGetVersion, ())
 {

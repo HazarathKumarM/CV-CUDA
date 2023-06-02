@@ -18,7 +18,7 @@
 #ifndef NVCV_FORMAT_PRIV_DATA_LAYOUT_HPP
 #define NVCV_FORMAT_PRIV_DATA_LAYOUT_HPP
 
-#include <nvcv/DataLayout.h>
+#include "../include/nvcv/DataLayout.h"
 
 #include <array>
 #include <cstdint>

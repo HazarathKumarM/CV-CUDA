@@ -24,7 +24,7 @@
 #include "alloc/Allocator.hpp"
 #include "detail/Callback.hpp"
 
-#include <nvcv/ImageFormat.hpp>
+#include "ImageFormat.hpp"
 
 #include <functional>
 

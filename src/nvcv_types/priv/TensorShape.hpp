@@ -18,8 +18,8 @@
 #ifndef NVCV_CORE_PRIV_TENSORSHAPE_HPP
 #define NVCV_CORE_PRIV_TENSORSHAPE_HPP
 
-#include <nvcv/TensorLayout.h>
-#include <util/StaticVector.hpp>
+#include "../include/nvcv/TensorLayout.h"
+#include "../../util/StaticVector.hpp"
 
 namespace nvcv::priv {
 

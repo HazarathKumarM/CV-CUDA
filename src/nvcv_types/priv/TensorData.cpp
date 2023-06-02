@@ -21,7 +21,7 @@
 #include "Exception.hpp"
 #include "TensorLayout.hpp"
 
-#include <nvcv/TensorLayout.h>
+#include "../include/nvcv/TensorLayout.h"
 
 namespace nvcv::priv {
 

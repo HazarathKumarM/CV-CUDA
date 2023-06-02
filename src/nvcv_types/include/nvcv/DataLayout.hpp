@@ -26,7 +26,7 @@
 
 #include "DataLayout.h"
 
-#include <nvcv/detail/CheckError.hpp>
+#include "detail/CheckError.hpp"
 
 #include <array>
 #include <cstddef>

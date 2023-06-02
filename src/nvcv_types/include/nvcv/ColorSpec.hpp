@@ -28,7 +28,7 @@
 
 #include "ColorSpec.h"
 
-#include <nvcv/detail/CheckError.hpp>
+#include "detail/CheckError.hpp"
 
 #include <iostream>
 

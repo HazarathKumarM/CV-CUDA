@@ -20,8 +20,9 @@
 #include "priv/Exception.hpp"
 #include "priv/SymbolVersioning.hpp"
 
-#include <nvcv/Status.h>
-#include <util/Assert.h>
+// #include <nvcv/Status.h>
+#include "include/nvcv/Status.h"
+#include "../util/Assert.h"
 
 namespace priv = nvcv::priv;
 

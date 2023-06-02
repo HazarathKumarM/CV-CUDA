@@ -22,7 +22,7 @@
 #include "TensorData.h"
 #include "TensorShape.hpp"
 
-#include <nvcv/DataType.hpp>
+#include "DataType.hpp"
 
 namespace nvcv {
 

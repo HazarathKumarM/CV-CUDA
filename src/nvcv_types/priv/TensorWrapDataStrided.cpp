@@ -23,9 +23,9 @@
 #include "TensorData.hpp"
 #include "TensorLayout.hpp"
 
-#include <cuda_runtime.h>
-#include <util/CheckError.hpp>
-#include <util/Math.hpp>
+// #include <cuda_runtime.h>
+#include "../../util/CheckError.hpp"
+#include "../../util/Math.hpp"
 
 #include <cmath>
 #include <numeric>
