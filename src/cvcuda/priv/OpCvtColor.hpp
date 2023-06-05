@@ -27,8 +27,8 @@
 #include "IOperator.hpp"
 #include "legacy/CvCudaLegacy.h"
 
-#include <nvcv/IImageBatch.hpp>
-#include <nvcv/ITensor.hpp>
+#include "../../nvcv_types/include/nvcv/IImageBatch.hpp"
+#include "../../nvcv_types/include/nvcv/ITensor.hpp"
 
 #include <memory>
 
@@ -39,11 +39,11 @@ class CvtColor final : public IOperator
 public:
     explicit CvtColor();
 
-    void operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out,
-                    NVCVColorConversionCode code) const;
+    // void operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out,
+    //                 NVCVColorConversionCode code) const;
 
-    void operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, const nvcv::IImageBatchVarShape &out,
-                    NVCVColorConversionCode code) const;
+    // void operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, const nvcv::IImageBatchVarShape &out,
+    //                 NVCVColorConversionCode code) const;
 
 private:
     std::unique_ptr<nvcv::legacy::cuda_op::CvtColor>         m_legacyOp;

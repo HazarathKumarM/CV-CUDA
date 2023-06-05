@@ -58,6 +58,11 @@ target_include_directories(nvcv_types_headers INTERFACE ${CMAKE_CURRENT_SOURCE_D
 
 # Installer
 
+set(CMAKE_INSTALL_PREFIX "/usr/local" CACHE PATH "Installation prefix")
+set(CMAKE_INSTALL_INCLUDEDIR "${CMAKE_INSTALL_PREFIX}/include" CACHE PATH "Installation directory for header files")
+
+message(STATUS "CMAKE_INSTALL_INCLUDEDIR: ${CMAKE_INSTALL_INCLUDEDIR}")
+
 install(TARGETS nvcv_types
         EXPORT nvcv_types
         COMPONENT lib

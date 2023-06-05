@@ -21,7 +21,7 @@
 
 #include "detail/Export.h"
 
-#include <cvcuda/VersionDef.h>
+#include "../../../../build/src/cvcuda/include/cvcuda/VersionDef.h"
 
 #ifdef __cplusplus
 extern "C"

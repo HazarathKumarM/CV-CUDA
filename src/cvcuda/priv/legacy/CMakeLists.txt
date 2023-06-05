@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# add_library(cvcuda_legacy STATIC
+add_library(cvcuda_legacy INTERFACE
 #     filter_utils.cu
 #     custom_crop.cu
 #     reformat.cu
@@ -68,12 +68,12 @@
 #     threshold_util.cu
 #     bnd_box.cu
 #     box_blur.cu
-# )
+)
 
-# target_link_libraries(cvcuda_legacy
-#     PUBLIC
-#         CUDA::cudart_static
-#         nvcv_types
-#         nvcv_util
-#         cvcuda_headers
-# )
+target_link_libraries(cvcuda_legacy
+    INTERFACE
+        # CUDA::cudart_static
+        nvcv_types
+        nvcv_util
+        cvcuda_headers
+)

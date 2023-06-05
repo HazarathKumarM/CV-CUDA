@@ -20,8 +20,8 @@
 #include "legacy/CvCudaLegacy.h"
 #include "legacy/CvCudaLegacyHelpers.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <util/CheckError.hpp>
+#include "../../nvcv_types/include/nvcv/Exception.hpp"
+#include "../../util/CheckError.hpp"
 
 namespace cvcuda::priv {
 
@@ -32,31 +32,31 @@ GammaContrast::GammaContrast(const int32_t maxVarShapeBatchSize, const int32_t m
     m_legacyOpVarShape = std::make_unique<legacy::GammaContrastVarShape>(maxVarShapeBatchSize, maxVarShapeChannelCount);
 }
 
-void GammaContrast::operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, nvcv::IImageBatchVarShape &out,
-                               const nvcv::ITensor &gamma) const
-{
-    auto inData = in.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
-    if (inData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Input must be device-acessible, varshape pitch-linear image batch");
-    }
+// void GammaContrast::operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, nvcv::IImageBatchVarShape &out,
+//                                const nvcv::ITensor &gamma) const
+// {
+//     auto inData = in.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
+//     if (inData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Input must be device-acessible, varshape pitch-linear image batch");
+//     }
 
-    auto outData = out.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
-    if (outData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Output must be device-acessible, varshape pitch-linear image batch");
-    }
+//     auto outData = out.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
+//     if (outData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Output must be device-acessible, varshape pitch-linear image batch");
+//     }
 
-    auto gammaData = gamma.exportData<nvcv::TensorDataStridedCuda>();
-    if (gammaData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Gamma must be device-acessible, pitch-linear tensor");
-    }
+//     auto gammaData = gamma.exportData<nvcv::TensorDataStridedCuda>();
+//     if (gammaData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Gamma must be device-acessible, pitch-linear tensor");
+//     }
 
-    NVCV_CHECK_THROW(m_legacyOpVarShape->infer(*inData, *outData, *gammaData, stream));
-}
+//     NVCV_CHECK_THROW(m_legacyOpVarShape->infer(*inData, *outData, *gammaData, stream));
+// }
 
 } // namespace cvcuda::priv

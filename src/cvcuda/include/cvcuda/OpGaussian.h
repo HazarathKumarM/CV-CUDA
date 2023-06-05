@@ -30,11 +30,11 @@
 #include "Types.h"
 #include "detail/Export.h"
 
-#include <cuda_runtime.h>
-#include <nvcv/BorderType.h>
-#include <nvcv/ImageBatch.h>
-#include <nvcv/Status.h>
-#include <nvcv/Tensor.h>
+// #include <cuda_runtime.h>
+#include "../../../nvcv_types/include/nvcv/BorderType.h"
+#include "../../../nvcv_types/include/nvcv/ImageBatch.h"
+#include "../../../nvcv_types/include/nvcv/Status.h"
+#include "../../../nvcv_types/include/nvcv/Tensor.h"
 
 #ifdef __cplusplus
 extern "C"

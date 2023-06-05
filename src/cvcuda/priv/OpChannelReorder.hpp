@@ -27,8 +27,8 @@
 #include "IOperator.hpp"
 #include "legacy/CvCudaLegacy.h"
 
-#include <nvcv/IImageBatch.hpp>
-#include <nvcv/ITensor.hpp>
+#include "../../nvcv_types/include/nvcv/IImageBatch.hpp"
+#include "../../nvcv_types/include/nvcv/ITensor.hpp"
 
 #include <memory>
 
@@ -39,8 +39,8 @@ class ChannelReorder final : public IOperator
 public:
     explicit ChannelReorder();
 
-    void operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, nvcv::IImageBatchVarShape &out,
-                    const nvcv::ITensor &orders) const;
+    // void operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, nvcv::IImageBatchVarShape &out,
+                    // const nvcv::ITensor &orders) const;
 
 private:
     std::unique_ptr<nvcv::legacy::cuda_op::ChannelReorderVarShape> m_legacyOpVarShape;

@@ -20,8 +20,8 @@
 #include "legacy/CvCudaLegacy.h"
 #include "legacy/CvCudaLegacyHelpers.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <util/CheckError.hpp>
+#include "../../nvcv_types/include/nvcv/Exception.hpp"
+#include "../../util/CheckError.hpp"
 
 namespace cvcuda::priv {
 
@@ -35,73 +35,73 @@ Composite::Composite()
     m_legacyOpVarShape = std::make_unique<legacy::CompositeVarShape>(maxIn, maxOut);
 }
 
-void Composite::operator()(cudaStream_t stream, const nvcv::ITensor &foreground, const nvcv::ITensor &background,
-                           const nvcv::ITensor &fgMask, const nvcv::ITensor &output) const
-{
-    auto foregroundData = foreground.exportData<nvcv::TensorDataStridedCuda>();
-    if (foregroundData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Input foreground must be cuda-accessible, pitch-linear tensor");
-    }
+// void Composite::operator()(cudaStream_t stream, const nvcv::ITensor &foreground, const nvcv::ITensor &background,
+//                            const nvcv::ITensor &fgMask, const nvcv::ITensor &output) const
+// {
+//     auto foregroundData = foreground.exportData<nvcv::TensorDataStridedCuda>();
+//     if (foregroundData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Input foreground must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    auto backgroundData = background.exportData<nvcv::TensorDataStridedCuda>();
-    if (backgroundData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Input background must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto backgroundData = background.exportData<nvcv::TensorDataStridedCuda>();
+//     if (backgroundData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Input background must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    auto fgMaskData = fgMask.exportData<nvcv::TensorDataStridedCuda>();
-    if (fgMaskData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Input fgMask must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto fgMaskData = fgMask.exportData<nvcv::TensorDataStridedCuda>();
+//     if (fgMaskData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Input fgMask must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    auto outData = output.exportData<nvcv::TensorDataStridedCuda>();
-    if (outData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Output must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto outData = output.exportData<nvcv::TensorDataStridedCuda>();
+//     if (outData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Output must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    NVCV_CHECK_THROW(m_legacyOp->infer(*foregroundData, *backgroundData, *fgMaskData, *outData, stream));
-}
+//     NVCV_CHECK_THROW(m_legacyOp->infer(*foregroundData, *backgroundData, *fgMaskData, *outData, stream));
+// }
 
-void Composite::operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &foreground,
-                           const nvcv::IImageBatchVarShape &background, const nvcv::IImageBatchVarShape &fgMask,
-                           const nvcv::IImageBatchVarShape &output) const
-{
-    auto foregroundData = foreground.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
-    if (foregroundData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Input foreground must be cuda-accessible, varshape image batch");
-    }
+// void Composite::operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &foreground,
+//                            const nvcv::IImageBatchVarShape &background, const nvcv::IImageBatchVarShape &fgMask,
+//                            const nvcv::IImageBatchVarShape &output) const
+// {
+//     auto foregroundData = foreground.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
+//     if (foregroundData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Input foreground must be cuda-accessible, varshape image batch");
+//     }
 
-    auto backgroundData = background.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
-    if (backgroundData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Input background must be cuda-accessible, varshape image batch");
-    }
+//     auto backgroundData = background.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
+//     if (backgroundData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Input background must be cuda-accessible, varshape image batch");
+//     }
 
-    auto fgMaskData = fgMask.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
-    if (fgMaskData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Input fgMask must be cuda-accessible, varshape image batch");
-    }
+//     auto fgMaskData = fgMask.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
+//     if (fgMaskData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Input fgMask must be cuda-accessible, varshape image batch");
+//     }
 
-    auto outData = output.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
-    if (outData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Output must be cuda-accessible, varshape image batch");
-    }
+//     auto outData = output.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
+//     if (outData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Output must be cuda-accessible, varshape image batch");
+//     }
 
-    NVCV_CHECK_THROW(m_legacyOpVarShape->infer(*foregroundData, *backgroundData, *fgMaskData, *outData, stream));
-}
+//     NVCV_CHECK_THROW(m_legacyOpVarShape->infer(*foregroundData, *backgroundData, *fgMaskData, *outData, stream));
+// }
 
 } // namespace cvcuda::priv

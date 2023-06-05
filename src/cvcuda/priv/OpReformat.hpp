@@ -27,7 +27,7 @@
 #include "IOperator.hpp"
 #include "legacy/CvCudaLegacy.h"
 
-#include <nvcv/ITensor.hpp>
+#include "../../nvcv_types/include/nvcv/ITensor.hpp"
 
 #include <memory>
 
@@ -38,7 +38,7 @@ class Reformat final : public IOperator
 public:
     explicit Reformat();
 
-    void operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out) const;
+    // void operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out) const;
 
 private:
     std::unique_ptr<nvcv::legacy::cuda_op::Reformat> m_legacyOp;

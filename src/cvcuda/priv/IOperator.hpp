@@ -21,9 +21,8 @@
 
 #include "Version.hpp"
 
-#include <cvcuda/Operator.h>
-#include <nvcv/Exception.hpp>
-
+#include "../include/cvcuda/Operator.h"
+#include "../../nvcv_types/include/nvcv/Exception.hpp"
 namespace cvcuda::priv {
 
 class IOperator

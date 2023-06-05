@@ -27,7 +27,7 @@
 #include "IOperator.hpp"
 #include "legacy/CvCudaLegacy.h"
 
-#include <nvcv/ITensor.hpp>
+#include "../../nvcv_types/include/nvcv/ITensor.hpp"
 
 #include <memory>
 
@@ -38,8 +38,8 @@ class CenterCrop final : public IOperator
 public:
     explicit CenterCrop();
 
-    void operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out,
-                    const nvcv::Size2D &cropSize) const;
+    // void operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out,
+                    // const nvcv::Size2D &cropSize) const;
 
 private:
     std::unique_ptr<nvcv::legacy::cuda_op::CenterCrop> m_legacyOp;

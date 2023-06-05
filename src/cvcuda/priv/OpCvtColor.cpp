@@ -20,8 +20,8 @@
 #include "legacy/CvCudaLegacy.h"
 #include "legacy/CvCudaLegacyHelpers.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <util/CheckError.hpp>
+#include "../../nvcv_types/include/nvcv/Exception.hpp"
+#include "../../util/CheckError.hpp"
 
 namespace cvcuda::priv {
 
@@ -34,44 +34,44 @@ CvtColor::CvtColor()
     m_legacyOpVarShape = std::make_unique<legacy::CvtColorVarShape>(maxIn, maxOut);
 }
 
-void CvtColor::operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out,
-                          NVCVColorConversionCode code) const
-{
-    auto inData = in.exportData<nvcv::TensorDataStridedCuda>();
-    if (inData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Input must be cuda-accessible, pitch-linear tensor");
-    }
+// void CvtColor::operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out,
+//                           NVCVColorConversionCode code) const
+// {
+//     auto inData = in.exportData<nvcv::TensorDataStridedCuda>();
+//     if (inData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Input must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    auto outData = out.exportData<nvcv::TensorDataStridedCuda>();
-    if (outData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Output must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto outData = out.exportData<nvcv::TensorDataStridedCuda>();
+//     if (outData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Output must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    NVCV_CHECK_THROW(m_legacyOp->infer(*inData, *outData, code, stream));
-}
+//     NVCV_CHECK_THROW(m_legacyOp->infer(*inData, *outData, code, stream));
+// }
 
-void CvtColor::operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in,
-                          const nvcv::IImageBatchVarShape &out, NVCVColorConversionCode code) const
-{
-    auto inData = in.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
-    if (inData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Input must be cuda-accessible, varshape pitch-linear image batch");
-    }
+// void CvtColor::operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in,
+//                           const nvcv::IImageBatchVarShape &out, NVCVColorConversionCode code) const
+// {
+//     auto inData = in.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
+//     if (inData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Input must be cuda-accessible, varshape pitch-linear image batch");
+//     }
 
-    auto outData = out.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
-    if (outData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Output must be cuda-accessible, varshape pitch-linear image batch");
-    }
+//     auto outData = out.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
+//     if (outData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Output must be cuda-accessible, varshape pitch-linear image batch");
+//     }
 
-    NVCV_CHECK_THROW(m_legacyOpVarShape->infer(*inData, *outData, code, stream));
-}
+//     NVCV_CHECK_THROW(m_legacyOpVarShape->infer(*inData, *outData, code, stream));
+// }
 
 } // namespace cvcuda::priv

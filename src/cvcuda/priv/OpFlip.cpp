@@ -20,8 +20,8 @@
 #include "legacy/CvCudaLegacy.h"
 #include "legacy/CvCudaLegacyHelpers.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <util/CheckError.hpp>
+#include "../../nvcv_types/include/nvcv/Exception.hpp"
+#include "../../util/CheckError.hpp"
 
 namespace cvcuda::priv {
 
@@ -34,52 +34,52 @@ Flip::Flip(int32_t maxBatchSize)
     m_legacyOpVarShape = std::make_unique<legacy::FlipOrCopyVarShape>(maxIn, maxOut);
 }
 
-void Flip::operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out, int32_t flipCode) const
-{
-    auto input = in.exportData<nvcv::TensorDataStridedCuda>();
-    if (input == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Input must be cuda-accessible, pitch-linear tensor");
-    }
+// void Flip::operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out, int32_t flipCode) const
+// {
+//     auto input = in.exportData<nvcv::TensorDataStridedCuda>();
+//     if (input == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Input must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    auto output = out.exportData<nvcv::TensorDataStridedCuda>();
-    if (output == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Output must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto output = out.exportData<nvcv::TensorDataStridedCuda>();
+//     if (output == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Output must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    NVCV_CHECK_THROW(m_legacyOp->infer(*input, *output, flipCode, stream));
-}
+//     NVCV_CHECK_THROW(m_legacyOp->infer(*input, *output, flipCode, stream));
+// }
 
-void Flip::operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, const nvcv::IImageBatchVarShape &out,
-                      const nvcv::ITensor &flipCode) const
-{
-    auto input = in.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
-    if (input == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Input must be cuda-accessible, varshape pitch-linear "
-                              "image batch");
-    }
+// void Flip::operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, const nvcv::IImageBatchVarShape &out,
+//                       const nvcv::ITensor &flipCode) const
+// {
+//     auto input = in.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
+//     if (input == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Input must be cuda-accessible, varshape pitch-linear "
+//                               "image batch");
+//     }
 
-    auto output = out.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
-    if (output == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Output must be cuda-accessible, varshape pitch-linear"
-                              " image batch");
-    }
+//     auto output = out.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
+//     if (output == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Output must be cuda-accessible, varshape pitch-linear"
+//                               " image batch");
+//     }
 
-    auto flip_code = flipCode.exportData<nvcv::TensorDataStridedCuda>();
-    if (flip_code == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Flip Code must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto flip_code = flipCode.exportData<nvcv::TensorDataStridedCuda>();
+//     if (flip_code == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Flip Code must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    NVCV_CHECK_THROW(m_legacyOpVarShape->infer(*input, *output, *flip_code, stream));
-}
+//     NVCV_CHECK_THROW(m_legacyOpVarShape->infer(*input, *output, *flip_code, stream));
+// }
 
 } // namespace cvcuda::priv

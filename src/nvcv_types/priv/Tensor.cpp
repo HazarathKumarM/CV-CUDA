@@ -116,7 +116,7 @@ NVCVTensorRequirements Tensor::CalcRequirements(int32_t rank, const int64_t *sha
     reqs.mem = {};
 
     int dev;
-    NVCV_CHECK_THROW(cudaGetDevice(&dev));
+    // NVCV_CHECK_THROW(cudaGetDevice(&dev));
 
     // Calculate row pitch alignment
     int rowAlign;
@@ -124,7 +124,7 @@ NVCVTensorRequirements Tensor::CalcRequirements(int32_t rank, const int64_t *sha
         if (userRowAlign == 0)
         {
             // it usually returns 32 bytes
-            NVCV_CHECK_THROW(cudaDeviceGetAttribute(&rowAlign, cudaDevAttrTexturePitchAlignment, dev));
+            // NVCV_CHECK_THROW(cudaDeviceGetAttribute(&rowAlign, cudaDevAttrTexturePitchAlignment, dev));
             rowAlign = std::lcm(rowAlign, util::RoundUpNextPowerOfTwo(dtype.strideBytes()));
         }
         else
@@ -145,7 +145,7 @@ NVCVTensorRequirements Tensor::CalcRequirements(int32_t rank, const int64_t *sha
         {
             int addrAlign;
             // it usually returns 512 bytes
-            NVCV_CHECK_THROW(cudaDeviceGetAttribute(&addrAlign, cudaDevAttrTextureAlignment, dev));
+            // NVCV_CHECK_THROW(cudaDeviceGetAttribute(&addrAlign, cudaDevAttrTextureAlignment, dev));
             reqs.alignBytes = std::lcm(addrAlign, rowAlign);
             reqs.alignBytes = util::RoundUpNextPowerOfTwo(reqs.alignBytes);
 

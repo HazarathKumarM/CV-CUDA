@@ -19,7 +19,7 @@
 #include "priv/SymbolVersioning.hpp"
 
 #include <cvcuda/Operator.h>
-#include <nvcv/Exception.hpp>
+#include "../nvcv_types/include/nvcv/Exception.hpp"
 
 namespace priv = cvcuda::priv;
 

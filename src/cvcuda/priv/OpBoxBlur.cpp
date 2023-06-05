@@ -20,8 +20,8 @@
 #include "legacy/CvCudaLegacy.h"
 #include "legacy/CvCudaLegacyHelpers.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <util/CheckError.hpp>
+#include "../../nvcv_types/include/nvcv/Exception.hpp"
+#include "../../util/CheckError.hpp"
 
 namespace cvcuda::priv {
 
@@ -33,24 +33,24 @@ BoxBlur::BoxBlur()
     m_legacyOp = std::make_unique<legacy::BoxBlur>(maxIn, maxOut);
 }
 
-void BoxBlur::operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out,
-                         const NVCVBlurBoxesI &bboxes) const
-{
-    auto inData = in.exportData<nvcv::TensorDataStridedCuda>();
-    if (inData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Input must be cuda-accessible, pitch-linear tensor");
-    }
+// void BoxBlur::operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out,
+//                          const NVCVBlurBoxesI &bboxes) const
+// {
+//     auto inData = in.exportData<nvcv::TensorDataStridedCuda>();
+//     if (inData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Input must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    auto outData = out.exportData<nvcv::TensorDataStridedCuda>();
-    if (outData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Output must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto outData = out.exportData<nvcv::TensorDataStridedCuda>();
+//     if (outData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Output must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    NVCV_CHECK_THROW(m_legacyOp->infer(*inData, *outData, bboxes, stream));
-}
+//     NVCV_CHECK_THROW(m_legacyOp->infer(*inData, *outData, bboxes, stream));
+// }
 
 } // namespace cvcuda::priv

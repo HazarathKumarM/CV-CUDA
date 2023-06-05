@@ -27,9 +27,9 @@
 #include "IOperator.hpp"
 #include "legacy/CvCudaLegacy.h"
 
-#include <cuda_runtime.h>
-#include <nvcv/IImageBatch.hpp>
-#include <nvcv/ITensor.hpp>
+// #include <cuda_runtime.h>
+#include "../../nvcv_types/include/nvcv/IImageBatch.hpp"
+#include "../../nvcv_types/include/nvcv/ITensor.hpp"
 
 #include <memory>
 
@@ -40,12 +40,12 @@ class Composite final : public IOperator
 public:
     explicit Composite();
 
-    void operator()(cudaStream_t stream, const nvcv::ITensor &foreground, const nvcv::ITensor &background,
-                    const nvcv::ITensor &fgMask, const nvcv::ITensor &output) const;
+    // void operator()(cudaStream_t stream, const nvcv::ITensor &foreground, const nvcv::ITensor &background,
+    //                 const nvcv::ITensor &fgMask, const nvcv::ITensor &output) const;
 
-    void operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &foreground,
-                    const nvcv::IImageBatchVarShape &background, const nvcv::IImageBatchVarShape &fgMask,
-                    const nvcv::IImageBatchVarShape &output) const;
+    // void operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &foreground,
+    //                 const nvcv::IImageBatchVarShape &background, const nvcv::IImageBatchVarShape &fgMask,
+    //                 const nvcv::IImageBatchVarShape &output) const;
 
 private:
     std::unique_ptr<nvcv::legacy::cuda_op::Composite>         m_legacyOp;

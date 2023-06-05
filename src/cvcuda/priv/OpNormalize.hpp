@@ -27,8 +27,8 @@
 #include "IOperator.hpp"
 #include "legacy/CvCudaLegacy.h"
 
-#include <nvcv/IImageBatch.hpp>
-#include <nvcv/ITensor.hpp>
+#include "../../nvcv_types/include/nvcv/IImageBatch.hpp"
+#include "../../nvcv_types/include/nvcv/ITensor.hpp"
 
 #include <memory>
 
@@ -39,12 +39,12 @@ class Normalize final : public IOperator
 public:
     explicit Normalize();
 
-    void operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &base, const nvcv::ITensor &scale,
-                    nvcv::ITensor &out, float global_scale, float shift, float epsilon, uint32_t flags) const;
+    // void operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &base, const nvcv::ITensor &scale,
+    //                 nvcv::ITensor &out, float global_scale, float shift, float epsilon, uint32_t flags) const;
 
-    void operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, const nvcv::ITensor &base,
-                    const nvcv::ITensor &scale, nvcv::IImageBatchVarShape &out, float global_scale, float shift,
-                    float epsilon, uint32_t flags) const;
+    // void operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, const nvcv::ITensor &base,
+    //                 const nvcv::ITensor &scale, nvcv::IImageBatchVarShape &out, float global_scale, float shift,
+    //                 float epsilon, uint32_t flags) const;
 
 private:
     std::unique_ptr<nvcv::legacy::cuda_op::Normalize>         m_legacyOp;

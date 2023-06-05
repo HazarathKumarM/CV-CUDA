@@ -19,10 +19,10 @@
 
 #include "priv/SymbolVersioning.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <nvcv/ImageBatch.hpp>
-#include <nvcv/Tensor.hpp>
-#include <util/Assert.h>
+#include "../nvcv_types/include/nvcv/Exception.hpp"
+#include "../nvcv_types/include/nvcv/ImageBatch.hpp"
+#include "../nvcv_types/include/nvcv/Tensor.hpp"
+#include "../util/Assert.h"
 
 namespace priv = cvcuda::priv;
 
@@ -41,6 +41,7 @@ CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaCopyMakeBorderCreate, (NVCVOperatorHan
         });
 }
 
+/*
 CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaCopyMakeBorderSubmit,
                   (NVCVOperatorHandle handle, cudaStream_t stream, NVCVTensorHandle in, NVCVTensorHandle out,
                    int32_t top, int32_t left, NVCVBorderType borderMode, const float4 borderValue))
@@ -80,3 +81,4 @@ CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaCopyMakeBorderVarShapeStackSubmit,
                                                              borderValue);
         });
 }
+*/

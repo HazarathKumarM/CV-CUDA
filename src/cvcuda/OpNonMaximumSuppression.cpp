@@ -19,9 +19,9 @@
 
 #include "priv/SymbolVersioning.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <nvcv/Tensor.hpp>
-#include <util/Assert.h>
+#include "../nvcv_types/include/nvcv/Exception.hpp"
+#include "../nvcv_types/include/nvcv/Tensor.hpp"
+#include "../util/Assert.h"
 
 namespace priv = cvcuda::priv;
 
@@ -40,6 +40,7 @@ CVCUDA_DEFINE_API(0, 3, NVCVStatus, cvcudaNonMaximumSuppressionCreate, (NVCVOper
         });
 }
 
+/*
 CVCUDA_DEFINE_API(0, 3, NVCVStatus, cvcudaNonMaximumSuppressionSubmit,
                   (NVCVOperatorHandle handle, cudaStream_t stream, NVCVTensorHandle in, NVCVTensorHandle out,
                    NVCVTensorHandle scores, float scoreThreshold, float iouThreshold))
@@ -52,3 +53,4 @@ CVCUDA_DEFINE_API(0, 3, NVCVStatus, cvcudaNonMaximumSuppressionSubmit,
                                                                     iouThreshold);
         });
 }
+*/

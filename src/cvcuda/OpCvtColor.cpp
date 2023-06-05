@@ -19,10 +19,10 @@
 
 #include "priv/SymbolVersioning.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <nvcv/ImageBatch.hpp>
-#include <nvcv/Tensor.hpp>
-#include <util/Assert.h>
+#include "../nvcv_types/include/nvcv/Exception.hpp"
+#include "../nvcv_types/include/nvcv/ImageBatch.hpp"
+#include "../nvcv_types/include/nvcv/Tensor.hpp"
+#include "../util/Assert.h"
 
 namespace priv = cvcuda::priv;
 
@@ -41,6 +41,7 @@ CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaCvtColorCreate, (NVCVOperatorHandle * 
         });
 }
 
+/*
 CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaCvtColorSubmit,
                   (NVCVOperatorHandle handle, cudaStream_t stream, NVCVTensorHandle in, NVCVTensorHandle out,
                    NVCVColorConversionCode code))
@@ -64,3 +65,4 @@ CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaCvtColorVarShapeSubmit,
             priv::ToDynamicRef<priv::CvtColor>(handle)(stream, inWrap, outWrap, code);
         });
 }
+*/

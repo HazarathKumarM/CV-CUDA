@@ -30,11 +30,11 @@
 #include "OpWarpAffine.h"
 #include "Types.h"
 
-#include <cuda_runtime.h>
-#include <nvcv/IImageBatch.hpp>
-#include <nvcv/ITensor.hpp>
-#include <nvcv/ImageFormat.hpp>
-#include <nvcv/alloc/Requirements.hpp>
+// #include <cuda_runtime.h>
+#include "../../../nvcv_types/include/nvcv/IImageBatch.hpp"
+#include "../../../nvcv_types/include/nvcv/ITensor.hpp"
+#include "../../../nvcv_types/include/nvcv/ImageFormat.hpp"
+#include "../../../nvcv_types/include/nvcv/alloc/Requirements.hpp"
 
 namespace cvcuda {
 
@@ -45,12 +45,12 @@ public:
 
     ~WarpAffine();
 
-    void operator()(cudaStream_t stream, nvcv::ITensor &in, nvcv::ITensor &out, const NVCVAffineTransform xform,
-                    const int32_t flags, const NVCVBorderType borderMode, const float4 borderValue);
+    // void operator()(cudaStream_t stream, nvcv::ITensor &in, nvcv::ITensor &out, const NVCVAffineTransform xform,
+    //                 const int32_t flags, const NVCVBorderType borderMode, const float4 borderValue);
 
-    void operator()(cudaStream_t stream, nvcv::IImageBatchVarShape &in, nvcv::IImageBatchVarShape &out,
-                    nvcv::ITensor &transMatrix, const int32_t flags, const NVCVBorderType borderMode,
-                    const float4 borderValue);
+    // void operator()(cudaStream_t stream, nvcv::IImageBatchVarShape &in, nvcv::IImageBatchVarShape &out,
+    //                 nvcv::ITensor &transMatrix, const int32_t flags, const NVCVBorderType borderMode,
+    //                 const float4 borderValue);
 
     virtual NVCVOperatorHandle handle() const noexcept override;
 
@@ -70,21 +70,21 @@ inline WarpAffine::~WarpAffine()
     m_handle = nullptr;
 }
 
-inline void WarpAffine::operator()(cudaStream_t stream, nvcv::ITensor &in, nvcv::ITensor &out,
-                                   const NVCVAffineTransform xform, const int32_t flags,
-                                   const NVCVBorderType borderMode, const float4 borderValue)
-{
-    nvcv::detail::CheckThrow(
-        cvcudaWarpAffineSubmit(m_handle, stream, in.handle(), out.handle(), xform, flags, borderMode, borderValue));
-}
+// inline void WarpAffine::operator()(cudaStream_t stream, nvcv::ITensor &in, nvcv::ITensor &out,
+//                                    const NVCVAffineTransform xform, const int32_t flags,
+//                                    const NVCVBorderType borderMode, const float4 borderValue)
+// {
+//     nvcv::detail::CheckThrow(
+//         cvcudaWarpAffineSubmit(m_handle, stream, in.handle(), out.handle(), xform, flags, borderMode, borderValue));
+// }
 
-inline void WarpAffine::operator()(cudaStream_t stream, nvcv::IImageBatchVarShape &in, nvcv::IImageBatchVarShape &out,
-                                   nvcv::ITensor &transMatrix, const int32_t flags, const NVCVBorderType borderMode,
-                                   const float4 borderValue)
-{
-    nvcv::detail::CheckThrow(cvcudaWarpAffineVarShapeSubmit(m_handle, stream, in.handle(), out.handle(),
-                                                            transMatrix.handle(), flags, borderMode, borderValue));
-}
+// inline void WarpAffine::operator()(cudaStream_t stream, nvcv::IImageBatchVarShape &in, nvcv::IImageBatchVarShape &out,
+//                                    nvcv::ITensor &transMatrix, const int32_t flags, const NVCVBorderType borderMode,
+//                                    const float4 borderValue)
+// {
+//     nvcv::detail::CheckThrow(cvcudaWarpAffineVarShapeSubmit(m_handle, stream, in.handle(), out.handle(),
+//                                                             transMatrix.handle(), flags, borderMode, borderValue));
+// }
 
 inline NVCVOperatorHandle WarpAffine::handle() const noexcept
 {

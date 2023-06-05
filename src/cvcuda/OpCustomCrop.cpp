@@ -19,9 +19,9 @@
 
 #include "priv/SymbolVersioning.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <nvcv/Tensor.hpp>
-#include <util/Assert.h>
+#include "../nvcv_types/include/nvcv/Exception.hpp"
+#include "../nvcv_types/include/nvcv/Tensor.hpp"
+#include "../util/Assert.h"
 
 namespace priv = cvcuda::priv;
 
@@ -40,6 +40,7 @@ CVCUDA_DEFINE_API(0, 0, NVCVStatus, cvcudaCustomCropCreate, (NVCVOperatorHandle 
         });
 }
 
+/*
 CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaCustomCropSubmit,
                   (NVCVOperatorHandle handle, cudaStream_t stream, NVCVTensorHandle in, NVCVTensorHandle out,
                    const NVCVRectI cropRect))
@@ -51,3 +52,4 @@ CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaCustomCropSubmit,
             priv::ToDynamicRef<priv::CustomCrop>(handle)(stream, input, output, cropRect);
         });
 }
+*/

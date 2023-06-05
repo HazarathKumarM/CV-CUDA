@@ -19,10 +19,10 @@
 
 #include "priv/SymbolVersioning.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <nvcv/ImageBatch.hpp>
-#include <nvcv/Tensor.hpp>
-#include <util/Assert.h>
+#include "../nvcv_types/include/nvcv/Exception.hpp"
+#include "../nvcv_types/include/nvcv/ImageBatch.hpp"
+#include "../nvcv_types/include/nvcv/Tensor.hpp"
+#include "../util/Assert.h"
 
 namespace priv = cvcuda::priv;
 
@@ -41,6 +41,7 @@ CVCUDA_DEFINE_API(0, 3, NVCVStatus, cvcudaRemapCreate, (NVCVOperatorHandle * han
         });
 }
 
+/*
 CVCUDA_DEFINE_API(0, 3, NVCVStatus, cvcudaRemapSubmit,
                   (NVCVOperatorHandle handle, cudaStream_t stream, NVCVTensorHandle in, NVCVTensorHandle out,
                    NVCVTensorHandle map, NVCVInterpolationType inInterp, NVCVInterpolationType mapInterp,
@@ -53,8 +54,9 @@ CVCUDA_DEFINE_API(0, 3, NVCVStatus, cvcudaRemapSubmit,
             priv::ToDynamicRef<priv::Remap>(handle)(stream, _in, _out, _map, inInterp, mapInterp, mapValueType,
                                                     static_cast<bool>(alignCorners), border, borderValue);
         });
-}
+}*/
 
+/*
 CVCUDA_DEFINE_API(0, 3, NVCVStatus, cvcudaRemapVarShapeSubmit,
                   (NVCVOperatorHandle handle, cudaStream_t stream, NVCVImageBatchHandle in, NVCVImageBatchHandle out,
                    NVCVTensorHandle map, NVCVInterpolationType inInterp, NVCVInterpolationType mapInterp,
@@ -69,3 +71,4 @@ CVCUDA_DEFINE_API(0, 3, NVCVStatus, cvcudaRemapVarShapeSubmit,
                                                     static_cast<bool>(alignCorners), border, borderValue);
         });
 }
+*/

@@ -20,8 +20,8 @@
 #include "legacy/CvCudaLegacy.h"
 #include "legacy/CvCudaLegacyHelpers.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <util/CheckError.hpp>
+#include "../../nvcv_types/include/nvcv/Exception.hpp"
+#include "../..//util/CheckError.hpp"
 
 namespace cvcuda::priv {
 
@@ -34,60 +34,60 @@ AverageBlur::AverageBlur(nvcv::Size2D maxKernelSize, int maxBatchSize)
     m_legacyOpVarShape = std::make_unique<legacy::AverageBlurVarShape>(maxIn, maxOut, maxKernelSize, maxBatchSize);
 }
 
-void AverageBlur::operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out,
-                             nvcv::Size2D kernelSize, int2 kernelAnchor, NVCVBorderType borderMode) const
-{
-    auto inData = in.exportData<nvcv::TensorDataStridedCuda>();
-    if (inData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Input must be cuda-accessible, pitch-linear tensor");
-    }
+// void AverageBlur::operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out,
+//                              nvcv::Size2D kernelSize, int2 kernelAnchor, NVCVBorderType borderMode) const
+// {
+//     auto inData = in.exportData<nvcv::TensorDataStridedCuda>();
+//     if (inData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Input must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    auto outData = out.exportData<nvcv::TensorDataStridedCuda>();
-    if (outData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Output must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto outData = out.exportData<nvcv::TensorDataStridedCuda>();
+//     if (outData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Output must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    NVCV_CHECK_THROW(m_legacyOp->infer(*inData, *outData, kernelSize, kernelAnchor, borderMode, stream));
-}
+//     NVCV_CHECK_THROW(m_legacyOp->infer(*inData, *outData, kernelSize, kernelAnchor, borderMode, stream));
+// }
 
-void AverageBlur::operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, nvcv::IImageBatchVarShape &out,
-                             const nvcv::ITensor &kernelSize, const nvcv::ITensor &kernelAnchor,
-                             NVCVBorderType borderMode) const
-{
-    auto inData = in.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
-    if (inData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Input must be cuda-accessible, varshape pitch-linear image batch");
-    }
+// void AverageBlur::operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, nvcv::IImageBatchVarShape &out,
+//                              const nvcv::ITensor &kernelSize, const nvcv::ITensor &kernelAnchor,
+//                              NVCVBorderType borderMode) const
+// {
+//     auto inData = in.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
+//     if (inData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Input must be cuda-accessible, varshape pitch-linear image batch");
+//     }
 
-    auto outData = out.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
-    if (outData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Output must be cuda-accessible, varshape pitch-linear image batch");
-    }
+//     auto outData = out.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
+//     if (outData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Output must be cuda-accessible, varshape pitch-linear image batch");
+//     }
 
-    auto kernelSizeData = kernelSize.exportData<nvcv::TensorDataStridedCuda>();
-    if (kernelSizeData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Kernel size must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto kernelSizeData = kernelSize.exportData<nvcv::TensorDataStridedCuda>();
+//     if (kernelSizeData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Kernel size must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    auto kernelAnchorData = kernelAnchor.exportData<nvcv::TensorDataStridedCuda>();
-    if (kernelAnchorData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Kernel anchor must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto kernelAnchorData = kernelAnchor.exportData<nvcv::TensorDataStridedCuda>();
+//     if (kernelAnchorData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Kernel anchor must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    NVCV_CHECK_THROW(
-        m_legacyOpVarShape->infer(*inData, *outData, *kernelSizeData, *kernelAnchorData, borderMode, stream));
-}
+//     NVCV_CHECK_THROW(
+//         m_legacyOpVarShape->infer(*inData, *outData, *kernelSizeData, *kernelAnchorData, borderMode, stream));
+// }
 
 } // namespace cvcuda::priv

@@ -52,12 +52,12 @@ add_library(cvcuda_priv STATIC
     OpAdaptiveThreshold.cpp
 )
 
-# target_link_libraries(cvcuda_priv
-#     PUBLIC
-#         nvcv_types
-#         nvcv_util
-#         cvcuda_headers
-#         nvcv_util_sanitizer
-#         cvcuda_legacy
-#         CUDA::cudart_static
-# )
+target_link_libraries(cvcuda_priv
+    PUBLIC
+        nvcv_types
+        nvcv_util
+        cvcuda_headers
+        nvcv_util_sanitizer
+        cvcuda_legacy
+        # CUDA::cudart_static
+)

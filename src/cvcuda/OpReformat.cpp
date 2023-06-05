@@ -19,9 +19,9 @@
 
 #include "priv/SymbolVersioning.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <nvcv/Tensor.hpp>
-#include <util/Assert.h>
+#include "../nvcv_types/include/nvcv/Exception.hpp"
+#include "../nvcv_types/include/nvcv/Tensor.hpp"
+#include "../util/Assert.h"
 
 namespace priv = cvcuda::priv;
 
@@ -40,6 +40,7 @@ CVCUDA_DEFINE_API(0, 0, NVCVStatus, cvcudaReformatCreate, (NVCVOperatorHandle * 
         });
 }
 
+/*
 CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaReformatSubmit,
                   (NVCVOperatorHandle handle, cudaStream_t stream, NVCVTensorHandle in, NVCVTensorHandle out))
 {
@@ -49,4 +50,4 @@ CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaReformatSubmit,
             nvcv::TensorWrapHandle input(in), output(out);
             priv::ToDynamicRef<priv::Reformat>(handle)(stream, input, output);
         });
-}
+}*/

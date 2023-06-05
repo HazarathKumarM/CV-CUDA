@@ -71,7 +71,7 @@ ImageBatchVarShape::ImageBatchVarShape(NVCVImageBatchVarShapeRequirements reqs, 
     , m_numImages(0)
     , m_cacheMaxSize{Size2D{0,0}}
 {
-    m_evPostFence     = nullptr;
+    // m_evPostFence     = nullptr;
     m_devImagesBuffer = m_hostImagesBuffer = nullptr;
     m_devFormatsBuffer = m_hostFormatsBuffer = nullptr;
     m_imgHandleBuffer                        = nullptr;
@@ -102,14 +102,14 @@ ImageBatchVarShape::ImageBatchVarShape(NVCVImageBatchVarShapeRequirements reqs, 
             = reinterpret_cast<NVCVImageHandle *>(m_alloc.allocHostMem(imgHandlesSize, m_reqs.alignBytes));
         NVCV_ASSERT(m_imgHandleBuffer != nullptr);
 
-        NVCV_CHECK_THROW(cudaEventCreateWithFlags(&m_evPostFence, cudaEventDisableTiming));
+        // NVCV_CHECK_THROW(cudaEventCreateWithFlags(&m_evPostFence, cudaEventDisableTiming));
     }
     catch (...)
     {
-        if (m_evPostFence)
-        {
-            NVCV_CHECK_LOG(cudaEventDestroy(m_evPostFence));
-        }
+        // if (m_evPostFence)
+        // {
+        //     // NVCV_CHECK_LOG(cudaEventDestroy(m_evPostFence));
+        // }
 
         m_alloc.freeCudaMem(m_devImagesBuffer, bufImagesSize, m_reqs.alignBytes);
         m_alloc.freeHostMem(m_hostImagesBuffer, bufImagesSize, m_reqs.alignBytes);
@@ -124,7 +124,7 @@ ImageBatchVarShape::ImageBatchVarShape(NVCVImageBatchVarShapeRequirements reqs, 
 
 ImageBatchVarShape::~ImageBatchVarShape()
 {
-    NVCV_CHECK_LOG(cudaEventSynchronize(m_evPostFence));
+    // NVCV_CHECK_LOG(cudaEventSynchronize(m_evPostFence));
 
     int64_t bufImagesSize  = m_reqs.capacity * sizeof(NVCVImageBufferStrided);
     int64_t bufFormatsSize = m_reqs.capacity * sizeof(NVCVImageFormat);
@@ -138,7 +138,7 @@ ImageBatchVarShape::~ImageBatchVarShape()
 
     m_alloc.freeHostMem(m_imgHandleBuffer, imgHandlesSize, m_reqs.alignBytes);
 
-    NVCV_CHECK_LOG(cudaEventDestroy(m_evPostFence));
+    // NVCV_CHECK_LOG(cudaEventDestroy(m_evPostFence));
 }
 
 NVCVTypeImageBatch ImageBatchVarShape::type() const
@@ -227,18 +227,18 @@ void ImageBatchVarShape::exportData(CUstream stream, NVCVImageBatchData &data) c
 
     if (m_dirtyStartingFromIndex < m_numImages)
     {
-        NVCV_CHECK_THROW(cudaStreamWaitEvent(stream, m_evPostFence));
+        // NVCV_CHECK_THROW(cudaStreamWaitEvent(stream, m_evPostFence));
 
-        NVCV_CHECK_THROW(cudaMemcpyAsync(
-            m_devImagesBuffer + m_dirtyStartingFromIndex, m_hostImagesBuffer + m_dirtyStartingFromIndex,
-            (m_numImages - m_dirtyStartingFromIndex) * sizeof(*m_devImagesBuffer), cudaMemcpyHostToDevice, stream));
+        // NVCV_CHECK_THROW(cudaMemcpyAsync(
+        //     m_devImagesBuffer + m_dirtyStartingFromIndex, m_hostImagesBuffer + m_dirtyStartingFromIndex,
+        //     (m_numImages - m_dirtyStartingFromIndex) * sizeof(*m_devImagesBuffer), cudaMemcpyHostToDevice, stream));
 
-        NVCV_CHECK_THROW(cudaMemcpyAsync(
-            m_devFormatsBuffer + m_dirtyStartingFromIndex, m_hostFormatsBuffer + m_dirtyStartingFromIndex,
-            (m_numImages - m_dirtyStartingFromIndex) * sizeof(*m_devFormatsBuffer), cudaMemcpyHostToDevice, stream));
+        // NVCV_CHECK_THROW(cudaMemcpyAsync(
+        //     m_devFormatsBuffer + m_dirtyStartingFromIndex, m_hostFormatsBuffer + m_dirtyStartingFromIndex,
+        //     (m_numImages - m_dirtyStartingFromIndex) * sizeof(*m_devFormatsBuffer), cudaMemcpyHostToDevice, stream));
 
         // Signal that we finished reading from m_hostBuffer
-        NVCV_CHECK_THROW(cudaEventRecord(m_evPostFence, stream));
+        // NVCV_CHECK_THROW(cudaEventRecord(m_evPostFence, stream));
 
         // up to m_numImages, we're all good
         m_dirtyStartingFromIndex = m_numImages;
@@ -269,7 +269,7 @@ void ImageBatchVarShape::pushImages(const NVCVImageHandle *images, int32_t numIm
     }
 
     // Wait till m_hostBuffer is free to be written to (all pending reads are finished).
-    NVCV_CHECK_THROW(cudaEventSynchronize(m_evPostFence));
+    // NVCV_CHECK_THROW(cudaEventSynchronize(m_evPostFence));
 
     int oldNumImages = m_numImages;
 
@@ -296,7 +296,7 @@ void ImageBatchVarShape::pushImages(NVCVPushImageFunc cbPushImage, void *ctxCall
     }
 
     // Wait till m_hostBuffer is free to be written to (all pending reads are finished).
-    NVCV_CHECK_THROW(cudaEventSynchronize(m_evPostFence));
+    // NVCV_CHECK_THROW(cudaEventSynchronize(m_evPostFence));
 
     int oldNumImages = m_numImages;
 

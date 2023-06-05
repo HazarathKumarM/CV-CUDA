@@ -19,10 +19,10 @@
 
 #include "priv/SymbolVersioning.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <nvcv/ImageBatch.hpp>
-#include <nvcv/Tensor.hpp>
-#include <util/Assert.h>
+#include "../nvcv_types/include/nvcv/Exception.hpp"
+#include "../nvcv_types/include/nvcv/ImageBatch.hpp"
+#include "../nvcv_types/include/nvcv/Tensor.hpp"
+#include "../util/Assert.h"
 
 namespace priv = cvcuda::priv;
 
@@ -42,6 +42,7 @@ CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaRotateCreate,
         });
 }
 
+/*
 CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaRotateSubmit,
                   (NVCVOperatorHandle handle, cudaStream_t stream, NVCVTensorHandle in, NVCVTensorHandle out,
                    const double angleDeg, const double2 shift, const NVCVInterpolationType interpolation))
@@ -66,3 +67,4 @@ CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaRotateVarShapeSubmit,
             priv::ToDynamicRef<priv::Rotate>(handle)(stream, input, output, angleDegWrap, shiftWrap, interpolation);
         });
 }
+*/

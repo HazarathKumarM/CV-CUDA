@@ -19,9 +19,9 @@
 #include "legacy/CvCudaLegacy.h"
 #include "legacy/CvCudaLegacyHelpers.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <nvcv/ImageFormat.h>
-#include <util/CheckError.hpp>
+#include "../../nvcv_types/include/nvcv/Exception.hpp"
+#include "../../nvcv_types/include/nvcv/ImageFormat.h"
+#include "../../util/CheckError.hpp"
 
 namespace cvcuda::priv {
 
@@ -44,30 +44,30 @@ PillowResize::PillowResize(nvcv::Size2D maxSize, int maxBatchSize, NVCVImageForm
     m_legacyOpVarShape = std::make_unique<leg::cuda_op::PillowResizeVarShape>(maxIn, maxOut, data_type);
 }
 
-void PillowResize::operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out,
-                              const NVCVInterpolationType interpolation) const
-{
-    auto inData = in.exportData<nvcv::TensorDataStridedCuda>();
-    if (inData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Input must be device-acessible, pitch-linear tensor");
-    }
+// void PillowResize::operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out,
+//                               const NVCVInterpolationType interpolation) const
+// {
+//     auto inData = in.exportData<nvcv::TensorDataStridedCuda>();
+//     if (inData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Input must be device-acessible, pitch-linear tensor");
+//     }
 
-    auto outData = out.exportData<nvcv::TensorDataStridedCuda>();
-    if (outData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Output must be device-acessible, pitch-linear tensor");
-    }
+//     auto outData = out.exportData<nvcv::TensorDataStridedCuda>();
+//     if (outData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Output must be device-acessible, pitch-linear tensor");
+//     }
 
-    NVCV_CHECK_THROW(m_legacyOp->infer(*inData, *outData, interpolation, stream));
-}
+//     NVCV_CHECK_THROW(m_legacyOp->infer(*inData, *outData, interpolation, stream));
+// }
 
-void PillowResize::operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in,
-                              const nvcv::IImageBatchVarShape &out, const NVCVInterpolationType interpolation) const
-{
-    NVCV_CHECK_THROW(m_legacyOpVarShape->infer(in, out, interpolation, stream));
-}
+// void PillowResize::operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in,
+//                               const nvcv::IImageBatchVarShape &out, const NVCVInterpolationType interpolation) const
+// {
+//     NVCV_CHECK_THROW(m_legacyOpVarShape->infer(in, out, interpolation, stream));
+// }
 
 } // namespace cvcuda::priv

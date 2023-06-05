@@ -19,10 +19,10 @@
 
 #include "priv/SymbolVersioning.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <nvcv/ImageBatch.hpp>
-#include <nvcv/Tensor.hpp>
-#include <util/Assert.h>
+#include "../nvcv_types/include/nvcv/Exception.hpp"
+#include "../nvcv_types/include/nvcv/ImageBatch.hpp"
+#include "../nvcv_types/include/nvcv/Tensor.hpp"
+#include "../util/Assert.h"
 
 namespace priv = cvcuda::priv;
 
@@ -43,6 +43,7 @@ CVCUDA_DEFINE_API(0, 3, NVCVStatus, cvcudaAdaptiveThresholdCreate,
         });
 }
 
+/*
 CVCUDA_DEFINE_API(0, 3, NVCVStatus, cvcudaAdaptiveThresholdSubmit,
                   (NVCVOperatorHandle handle, cudaStream_t stream, NVCVTensorHandle in, NVCVTensorHandle out,
                    double maxValue, NVCVAdaptiveThresholdType adaptiveMethod, NVCVThresholdType thresholdType,
@@ -56,7 +57,9 @@ CVCUDA_DEFINE_API(0, 3, NVCVStatus, cvcudaAdaptiveThresholdSubmit,
                                                                 thresholdType, blockSize, c);
         });
 }
+*/
 
+/*
 CVCUDA_DEFINE_API(0, 3, NVCVStatus, cvcudaAdaptiveThresholdVarShapeSubmit,
                   (NVCVOperatorHandle handle, cudaStream_t stream, NVCVImageBatchHandle in, NVCVImageBatchHandle out,
                    NVCVTensorHandle maxValue, NVCVAdaptiveThresholdType adaptiveMethod, NVCVThresholdType thresholdType,
@@ -71,3 +74,4 @@ CVCUDA_DEFINE_API(0, 3, NVCVStatus, cvcudaAdaptiveThresholdVarShapeSubmit,
                                                                 thresholdType, blocksizeVec, cVec);
         });
 }
+*/

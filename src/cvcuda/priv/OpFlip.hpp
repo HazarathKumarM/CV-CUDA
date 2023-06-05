@@ -27,8 +27,8 @@
 #include "IOperator.hpp"
 #include "legacy/CvCudaLegacy.h"
 
-#include <nvcv/IImageBatch.hpp>
-#include <nvcv/ITensor.hpp>
+#include "../../nvcv_types/include/nvcv/IImageBatch.hpp"
+#include "../../nvcv_types/include/nvcv/ITensor.hpp"
 
 #include <memory>
 
@@ -39,10 +39,10 @@ class Flip final : public IOperator
 public:
     explicit Flip(int32_t maxBatchSize);
 
-    void operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out, int32_t flipCode) const;
+    // void operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out, int32_t flipCode) const;
 
-    void operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, const nvcv::IImageBatchVarShape &out,
-                    const nvcv::ITensor &flipCode) const;
+    // void operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, const nvcv::IImageBatchVarShape &out,
+    //                 const nvcv::ITensor &flipCode) const;
 
 private:
     std::unique_ptr<nvcv::legacy::cuda_op::Flip>               m_legacyOp;

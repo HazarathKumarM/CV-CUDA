@@ -18,7 +18,7 @@
 #ifndef CVCUDA_PRIV_SYMBOLVERSIONING_HPP
 #define CVCUDA_PRIV_SYMBOLVERSIONING_HPP
 
-#include <util/SymbolVersioning.hpp>
+#include "../../util/SymbolVersioning.hpp"
 
 #define CVCUDA_DEFINE_API(...)     NVCV_PROJ_DEFINE_API(CVCUDA, __VA_ARGS__)
 #define CVCUDA_DEFINE_OLD_API(...) NVCV_PROJ_DEFINE_OLD_API(CVCUDA, __VA_ARGS__)

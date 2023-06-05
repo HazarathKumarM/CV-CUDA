@@ -27,8 +27,8 @@
 #include "IOperator.hpp"
 #include "legacy/CvCudaLegacy.h"
 
-#include <nvcv/IImageBatch.hpp>
-#include <nvcv/ITensor.hpp>
+#include "../../nvcv_types/include/nvcv/IImageBatch.hpp"
+#include "../../nvcv_types/include/nvcv/ITensor.hpp"
 
 #include <memory>
 
@@ -39,11 +39,11 @@ class Rotate final : public IOperator
 public:
     explicit Rotate(const int maxVarShapeBatchSize);
 
-    void operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out, const double angleDeg,
-                    const double2 shift, const NVCVInterpolationType interpolation) const;
+    // void operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out, const double angleDeg,
+    //                 const double2 shift, const NVCVInterpolationType interpolation) const;
 
-    void operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, const nvcv::IImageBatchVarShape &out,
-                    nvcv::ITensor &angleDeg, nvcv::ITensor &shift, const NVCVInterpolationType interpolation) const;
+    // void operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, const nvcv::IImageBatchVarShape &out,
+    //                 nvcv::ITensor &angleDeg, nvcv::ITensor &shift, const NVCVInterpolationType interpolation) const;
 
 private:
     std::unique_ptr<nvcv::legacy::cuda_op::Rotate>         m_legacyOp;

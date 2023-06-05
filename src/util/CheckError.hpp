@@ -129,7 +129,7 @@ void DoLog(T error, const char *file, int line, const std::string_view &stmt, co
 
 } // namespace detail
 
-// #define NVCV_CHECK_THROW(STMT, ...)                                                                                \
+//  #define NVCV_CHECK_THROW(STMT, ...)                                                                                \
 //     [&]()                                                                                                          \
 //     {                                                                                                              \
 //         using ::nvcv::util::PreprocessError;                                                                       \

@@ -26,7 +26,7 @@
 
 #include "Export.h"
 
-#include "VersionDef.h"
+#include "../../../../build/src/nvcv_types/include/nvcv/VersionDef.h"
 
 #ifdef __cplusplus
 extern "C"

@@ -20,8 +20,8 @@
 #include "legacy/CvCudaLegacy.h"
 #include "legacy/CvCudaLegacyHelpers.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <util/CheckError.hpp>
+#include "../../nvcv_types/include/nvcv/Exception.hpp"
+#include "../../util/CheckError.hpp"
 
 namespace cvcuda::priv {
 
@@ -35,84 +35,84 @@ JointBilateralFilter::JointBilateralFilter()
     m_legacyOpVarShape = std::make_unique<legacy::JointBilateralFilterVarShape>(maxIn, maxOut);
 }
 
-void JointBilateralFilter::operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &inColor,
-                                      const nvcv::ITensor &out, int diameter, float sigmaColor, float sigmaSpace,
-                                      NVCVBorderType borderMode) const
-{
-    auto inData = in.exportData<nvcv::TensorDataStridedCuda>();
-    if (inData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Input must be cuda-accessible, pitch-linear tensor");
-    }
+// void JointBilateralFilter::operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &inColor,
+//                                       const nvcv::ITensor &out, int diameter, float sigmaColor, float sigmaSpace,
+//                                       NVCVBorderType borderMode) const
+// {
+//     auto inData = in.exportData<nvcv::TensorDataStridedCuda>();
+//     if (inData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Input must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    auto inColorData = inColor.exportData<nvcv::TensorDataStridedCuda>();
-    if (inColorData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "InputColor must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto inColorData = inColor.exportData<nvcv::TensorDataStridedCuda>();
+//     if (inColorData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "InputColor must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    auto outData = out.exportData<nvcv::TensorDataStridedCuda>();
-    if (outData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Output must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto outData = out.exportData<nvcv::TensorDataStridedCuda>();
+//     if (outData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Output must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    NVCV_CHECK_THROW(
-        m_legacyOp->infer(*inData, *inColorData, *outData, diameter, sigmaColor, sigmaSpace, borderMode, stream));
-}
+//     NVCV_CHECK_THROW(
+//         m_legacyOp->infer(*inData, *inColorData, *outData, diameter, sigmaColor, sigmaSpace, borderMode, stream));
+// }
 
-void JointBilateralFilter::operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in,
-                                      const nvcv::IImageBatchVarShape &inColor, const nvcv::IImageBatchVarShape &out,
-                                      const nvcv::ITensor &diameter, const nvcv::ITensor &sigmaColor,
-                                      const nvcv::ITensor &sigmaSpace, NVCVBorderType borderMode) const
-{
-    auto inData = in.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
-    if (inData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "in must be a device-accessible, varshape image batch");
-    }
+// void JointBilateralFilter::operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in,
+//                                       const nvcv::IImageBatchVarShape &inColor, const nvcv::IImageBatchVarShape &out,
+//                                       const nvcv::ITensor &diameter, const nvcv::ITensor &sigmaColor,
+//                                       const nvcv::ITensor &sigmaSpace, NVCVBorderType borderMode) const
+// {
+//     auto inData = in.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
+//     if (inData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "in must be a device-accessible, varshape image batch");
+//     }
 
-    auto inColorData = inColor.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
-    if (inColorData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "inColor must be device-accessible, varshape image batch");
-    }
+//     auto inColorData = inColor.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
+//     if (inColorData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "inColor must be device-accessible, varshape image batch");
+//     }
 
-    auto outData = out.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
-    if (outData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Output must be device-accessible,  varshape image batch");
-    }
+//     auto outData = out.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
+//     if (outData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Output must be device-accessible,  varshape image batch");
+//     }
 
-    auto diameterData = diameter.exportData<nvcv::TensorDataStridedCuda>();
-    if (diameterData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Diameter must be device-accessible, pitch-linear tensor");
-    }
+//     auto diameterData = diameter.exportData<nvcv::TensorDataStridedCuda>();
+//     if (diameterData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Diameter must be device-accessible, pitch-linear tensor");
+//     }
 
-    auto sigmaColorData = sigmaColor.exportData<nvcv::TensorDataStridedCuda>();
-    if (sigmaColorData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "sigmaColor must be device-accessible, pitch-linear tensor");
-    }
+//     auto sigmaColorData = sigmaColor.exportData<nvcv::TensorDataStridedCuda>();
+//     if (sigmaColorData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "sigmaColor must be device-accessible, pitch-linear tensor");
+//     }
 
-    auto sigmaSpaceData = sigmaSpace.exportData<nvcv::TensorDataStridedCuda>();
-    if (sigmaSpaceData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "sigmaSpace must be device-accessible, pitch-linear tensor");
-    }
+//     auto sigmaSpaceData = sigmaSpace.exportData<nvcv::TensorDataStridedCuda>();
+//     if (sigmaSpaceData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "sigmaSpace must be device-accessible, pitch-linear tensor");
+//     }
 
-    NVCV_CHECK_THROW(m_legacyOpVarShape->infer(*inData, *inColorData, *outData, *diameterData, *sigmaColorData,
-                                               *sigmaSpaceData, borderMode, stream));
-}
+//     NVCV_CHECK_THROW(m_legacyOpVarShape->infer(*inData, *inColorData, *outData, *diameterData, *sigmaColorData,
+//                                                *sigmaSpaceData, borderMode, stream));
+// }
 
 } // namespace cvcuda::priv

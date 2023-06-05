@@ -27,8 +27,8 @@
 #include "IOperator.hpp"
 #include "legacy/CvCudaLegacy.h"
 
-#include <nvcv/IImageBatch.hpp>
-#include <nvcv/ITensor.hpp>
+#include "../../nvcv_types/include/nvcv/IImageBatch.hpp"
+#include "../../nvcv_types/include/nvcv/ITensor.hpp"
 
 #include <memory>
 
@@ -39,8 +39,8 @@ class PadAndStack final : public IOperator
 public:
     explicit PadAndStack();
 
-    void operator()(cudaStream_t stream, nvcv::IImageBatchVarShape &in, nvcv::ITensor &out, nvcv::ITensor &top,
-                    nvcv::ITensor &left, const NVCVBorderType borderMode, const float borderValue) const;
+    // void operator()(cudaStream_t stream, nvcv::IImageBatchVarShape &in, nvcv::ITensor &out, nvcv::ITensor &top,
+    //                 nvcv::ITensor &left, const NVCVBorderType borderMode, const float borderValue) const;
 
 private:
     std::unique_ptr<nvcv::legacy::cuda_op::PadAndStack> m_legacyOp;

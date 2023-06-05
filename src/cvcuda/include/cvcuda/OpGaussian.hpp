@@ -29,12 +29,12 @@
 #include "IOperator.hpp"
 #include "OpGaussian.h"
 
-#include <cuda_runtime.h>
-#include <nvcv/IImageBatch.hpp>
-#include <nvcv/ITensor.hpp>
-#include <nvcv/ImageFormat.hpp>
-#include <nvcv/Size.hpp>
-#include <nvcv/alloc/Requirements.hpp>
+// #include <cuda_runtime.h>
+#include "../../../nvcv_types/include/nvcv/IImageBatch.hpp"
+#include "../../../nvcv_types/include/nvcv/ITensor.hpp"
+#include "../../../nvcv_types/include/nvcv/ImageFormat.hpp"
+#include "../../../nvcv_types/include/nvcv/Size.hpp"
+#include "../../../nvcv_types/include/nvcv/alloc/Requirements.hpp"
 
 namespace cvcuda {
 

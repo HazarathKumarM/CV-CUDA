@@ -27,8 +27,8 @@
 #include "IOperator.hpp"
 #include "legacy/CvCudaLegacy.h"
 
-#include <nvcv/IImageBatch.hpp>
-#include <nvcv/ITensor.hpp>
+#include "../../nvcv_types/include/nvcv/IImageBatch.hpp"
+#include "../../nvcv_types/include/nvcv/ITensor.hpp"
 
 #include <memory>
 
@@ -39,14 +39,14 @@ class CopyMakeBorder final : public IOperator
 public:
     explicit CopyMakeBorder();
 
-    void operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out, const int top,
-                    const int left, const NVCVBorderType borderMode, const float4 borderValue) const;
-    void operator()(cudaStream_t stream, const nvcv::IImageBatch &in, const nvcv::IImageBatch &out,
-                    const nvcv::ITensor &top, const nvcv::ITensor &left, const NVCVBorderType borderMode,
-                    const float4 borderValue) const;
-    void operator()(cudaStream_t stream, const nvcv::IImageBatch &in, const nvcv::ITensor &out,
-                    const nvcv::ITensor &top, const nvcv::ITensor &left, const NVCVBorderType borderMode,
-                    const float4 borderValue) const;
+    // void operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out, const int top,
+    //                 const int left, const NVCVBorderType borderMode, const float4 borderValue) const;
+    // void operator()(cudaStream_t stream, const nvcv::IImageBatch &in, const nvcv::IImageBatch &out,
+    //                 const nvcv::ITensor &top, const nvcv::ITensor &left, const NVCVBorderType borderMode,
+    //                 const float4 borderValue) const;
+    // void operator()(cudaStream_t stream, const nvcv::IImageBatch &in, const nvcv::ITensor &out,
+    //                 const nvcv::ITensor &top, const nvcv::ITensor &left, const NVCVBorderType borderMode,
+    //                 const float4 borderValue) const;
 
 private:
     std::unique_ptr<nvcv::legacy::cuda_op::CopyMakeBorder>         m_legacyOp;

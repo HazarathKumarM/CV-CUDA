@@ -41,13 +41,13 @@ void DefaultAllocator::doFreeHostMem(void *ptr, int64_t size, int32_t align) noe
 void *DefaultAllocator::doAllocHostPinnedMem(int64_t size, int32_t align)
 {
     void *ptr = nullptr;
-    NVCV_CHECK_THROqW(::cudaHostAlloc(&ptr, size, cudaHostAllocWriteCombined | cudaHostAllocMapped));
+    // NVCV_CHECK_THROW(::cudaHostAlloc(&ptr, size, cudaHostAllocWriteCombined | cudaHostAllocMapped));
     // TODO: can we do better than this?
     if (reinterpret_cast<uintptr_t>(ptr) % align != 0)
     {
-        NVCV_CHECK_LOG(::cudaFreeHost(ptr));
-        throw Exception(NVCV_ERROR_INTERNAL, "Can't allocate %ld bytes of CUDA memory with alignment at %d bytes", size,
-                        align);
+        // NVCV_CHECK_LOG(::cudaFreeHost(ptr));
+        // throw Exception(NVCV_ERROR_INTERNAL, "Can't allocate %ld bytes of CUDA memory with alignment at %d bytes", size,
+        //                 align);
     }
     return ptr;
 }
@@ -57,20 +57,20 @@ void DefaultAllocator::doFreeHostPinnedMem(void *ptr, int64_t size, int32_t alig
     (void)size;
     (void)align;
 
-    NVCV_CHECK_LOG(::cudaFreeHost(ptr));
+    // NVCV_CHECK_LOG(::cudaFreeHost(ptr));
 }
 
 void *DefaultAllocator::doAllocCudaMem(int64_t size, int32_t align)
 {
     void *ptr = nullptr;
-    NVCV_CHECK_THROW(::cudaMalloc(&ptr, size));
+    // NVCV_CHECK_THROW(::cudaMalloc(&ptr, size));
 
     // TODO: can we do better than this?
     if (reinterpret_cast<uintptr_t>(ptr) % align != 0)
     {
-        NVCV_CHECK_LOG(::cudaFree(ptr));
-        throw Exception(NVCV_ERROR_INTERNAL, "Can't allocate %ld bytes of CUDA memory with alignment at %d bytes", size,
-                        align);
+        // NVCV_CHECK_LOG(::cudaFree(ptr));
+        // throw Exception(NVCV_ERROR_INTERNAL, "Can't allocate %ld bytes of CUDA memory with alignment at %d bytes", size,
+                        // align);
     }
     return ptr;
 }
@@ -80,7 +80,7 @@ void DefaultAllocator::doFreeCudaMem(void *ptr, int64_t size, int32_t align) noe
     (void)size;
     (void)align;
 
-    NVCV_CHECK_LOG(::cudaFree(ptr));
+    // NVCV_CHECK_LOG(::cudaFree(ptr));
 }
 
 NVCVResourceAllocator DefaultAllocator::doGet(NVCVResourceType resType)

@@ -27,8 +27,8 @@
 #include "IOperator.hpp"
 #include "legacy/CvCudaLegacy.h"
 
-#include <nvcv/IImageBatch.hpp>
-#include <nvcv/ITensor.hpp>
+#include "../../nvcv_types/include/nvcv/IImageBatch.hpp"
+#include "../../nvcv_types/include/nvcv/ITensor.hpp"
 
 #include <memory>
 
@@ -39,9 +39,9 @@ class Conv2D final : public IOperator
 public:
     explicit Conv2D();
 
-    void operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, nvcv::IImageBatchVarShape &out,
-                    const nvcv::IImageBatchVarShape &kernel, const nvcv::ITensor &kernelAnchor,
-                    NVCVBorderType borderMode) const;
+    // void operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, nvcv::IImageBatchVarShape &out,
+    //                 const nvcv::IImageBatchVarShape &kernel, const nvcv::ITensor &kernelAnchor,
+    //                 NVCVBorderType borderMode) const;
 
 private:
     std::unique_ptr<nvcv::legacy::cuda_op::Conv2DVarShape> m_legacyOpVarShape;

@@ -18,7 +18,7 @@
 #ifndef CV_CUDA_OSD_HPP
 #define CV_CUDA_OSD_HPP
 
-#include <cuda_runtime.h>
+// #include <cuda_runtime.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -31,16 +31,16 @@ namespace nvcv::cuda { namespace osd {
 
 #define checkRuntime(call) check_runtime(call, #call, __LINE__, __FILE__)
 
-inline static bool check_runtime(cudaError_t e, const char *call, int line, const char *file)
-{
-    if (e != cudaSuccess)
-    {
-        fprintf(stderr, "CUDA Runtime error %s # %s, code = %s [ %d ] in file %s:%d\n", call, cudaGetErrorString(e),
-                cudaGetErrorName(e), e, file, line);
-        return false;
-    }
-    return true;
-}
+// inline static bool check_runtime(cudaError_t e, const char *call, int line, const char *file)
+// {
+//     if (e != cudaSuccess)
+//     {
+//         fprintf(stderr, "CUDA Runtime error %s # %s, code = %s [ %d ] in file %s:%d\n", call, cudaGetErrorString(e),
+//                 cudaGetErrorName(e), e, file, line);
+//         return false;
+//     }
+//     return true;
+// }
 
 template<typename T>
 class Memory
@@ -71,15 +71,15 @@ public:
         free_memory();
     }
 
-    void copy_host_to_device(cudaStream_t stream = nullptr)
-    {
-        checkRuntime(cudaMemcpyAsync(device_, host_, bytes(), cudaMemcpyHostToDevice, stream));
-    }
+    // void copy_host_to_device(cudaStream_t stream = nullptr)
+    // {
+    //     checkRuntime(cudaMemcpyAsync(device_, host_, bytes(), cudaMemcpyHostToDevice, stream));
+    // }
 
-    void copy_device_to_host(cudaStream_t stream = nullptr)
-    {
-        checkRuntime(cudaMemcpyAsync(host_, device_, bytes(), cudaMemcpyDeviceToHost, stream));
-    }
+    // void copy_device_to_host(cudaStream_t stream = nullptr)
+    // {
+    //     checkRuntime(cudaMemcpyAsync(host_, device_, bytes(), cudaMemcpyDeviceToHost, stream));
+    // }
 
     void alloc_or_resize_to(size_t size)
     {

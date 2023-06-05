@@ -26,9 +26,9 @@
 
 #include "CvCudaLegacy.h"
 
-#include <nvcv/ImageBatchData.hpp>
-#include <nvcv/TensorData.hpp>
-#include <nvcv/TensorShapeInfo.hpp>
+#include "../../../nvcv_types/include/nvcv/ImageBatchData.hpp"
+#include "../../../nvcv_types/include/nvcv/TensorData.hpp"
+#include "../../../nvcv_types/include/nvcv/TensorShapeInfo.hpp"
 
 namespace nvcv::legacy::helpers {
 

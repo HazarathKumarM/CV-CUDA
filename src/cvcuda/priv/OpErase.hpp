@@ -27,8 +27,8 @@
 #include "IOperator.hpp"
 #include "legacy/CvCudaLegacy.h"
 
-#include <nvcv/IImageBatch.hpp>
-#include <nvcv/ITensor.hpp>
+#include "../../nvcv_types/include/nvcv/IImageBatch.hpp"
+#include "../../nvcv_types/include/nvcv/ITensor.hpp"
 
 #include <memory>
 
@@ -39,13 +39,13 @@ class Erase final : public IOperator
 public:
     explicit Erase(int num_erasing_area);
 
-    void operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out, nvcv::ITensor &anchor,
-                    nvcv::ITensor &erasing, nvcv::ITensor &values, nvcv::ITensor &imgIdx, bool random,
-                    unsigned int seed) const;
+    // void operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out, nvcv::ITensor &anchor,
+    //                 nvcv::ITensor &erasing, nvcv::ITensor &values, nvcv::ITensor &imgIdx, bool random,
+    //                 unsigned int seed) const;
 
-    void operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, const nvcv::IImageBatchVarShape &out,
-                    nvcv::ITensor &anchor, nvcv::ITensor &erasing, nvcv::ITensor &values, nvcv::ITensor &imgIdx,
-                    bool random, unsigned int seed) const;
+    // void operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, const nvcv::IImageBatchVarShape &out,
+    //                 nvcv::ITensor &anchor, nvcv::ITensor &erasing, nvcv::ITensor &values, nvcv::ITensor &imgIdx,
+    //                 bool random, unsigned int seed) const;
 
 private:
     std::unique_ptr<nvcv::legacy::cuda_op::Erase>         m_legacyOp;

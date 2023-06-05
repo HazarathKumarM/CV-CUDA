@@ -27,8 +27,8 @@
 #include "IOperator.hpp"
 #include "legacy/CvCudaLegacy.h"
 
-#include <nvcv/IImageBatch.hpp>
-#include <nvcv/ITensor.hpp>
+#include "../../nvcv_types/include/nvcv/IImageBatch.hpp"
+#include "../../nvcv_types/include/nvcv/ITensor.hpp"
 
 #include <memory>
 
@@ -39,11 +39,11 @@ class Laplacian final : public IOperator
 public:
     explicit Laplacian();
 
-    void operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out, const int ksize,
-                    const float scale, const NVCVBorderType borderMode) const;
+    // void operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out, const int ksize,
+    //                 const float scale, const NVCVBorderType borderMode) const;
 
-    void operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, nvcv::IImageBatchVarShape &out,
-                    const nvcv::ITensor &ksize, const nvcv::ITensor &scale, NVCVBorderType borderMode) const;
+    // void operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, nvcv::IImageBatchVarShape &out,
+    //                 const nvcv::ITensor &ksize, const nvcv::ITensor &scale, NVCVBorderType borderMode) const;
 
 private:
     std::unique_ptr<nvcv::legacy::cuda_op::Laplacian>         m_legacyOp;

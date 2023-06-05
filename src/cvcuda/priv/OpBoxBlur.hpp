@@ -27,7 +27,7 @@
 #include "IOperator.hpp"
 #include "legacy/CvCudaLegacy.h"
 
-#include <nvcv/ITensor.hpp>
+#include "../../nvcv_types/include/nvcv/ITensor.hpp"
 
 #include <memory>
 
@@ -38,8 +38,8 @@ class BoxBlur final : public IOperator
 public:
     explicit BoxBlur();
 
-    void operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out,
-                    const NVCVBlurBoxesI &bboxes) const;
+    // void operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out,
+    //                 const NVCVBlurBoxesI &bboxes) const;
 
 private:
     std::unique_ptr<nvcv::legacy::cuda_op::BoxBlur> m_legacyOp;

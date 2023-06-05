@@ -30,11 +30,11 @@
 #include "Types.h"
 #include "detail/Export.h"
 
-#include <cuda_runtime.h>
-#include <nvcv/BorderType.h>
-#include <nvcv/ImageBatch.h>
-#include <nvcv/Status.h>
-#include <nvcv/Tensor.h>
+// #include <cuda_runtime.h>
+#include "../../../nvcv_types/include/nvcv/BorderType.h"
+#include "../../../nvcv_types/include/nvcv/ImageBatch.h"
+#include "../../../nvcv_types/include/nvcv/Status.h"
+#include "../../../nvcv_types/include/nvcv/Tensor.h"
 
 // @brief storage for perspective transform matrix (row major)
 typedef float NVCVPerspectiveTransform[9];
@@ -127,15 +127,15 @@ CVCUDA_PUBLIC NVCVStatus cvcudaWarpPerspectiveCreate(NVCVOperatorHandle *handle,
  * @retval #NVCV_ERROR_INTERNAL         Internal error in the operator, invalid types passed in.
  * @retval #NVCV_SUCCESS                Operation executed successfully.
  */
-CVCUDA_PUBLIC NVCVStatus cvcudaWarpPerspectiveSubmit(NVCVOperatorHandle handle, cudaStream_t stream,
-                                                     NVCVTensorHandle in, NVCVTensorHandle out,
-                                                     const NVCVPerspectiveTransform transMatrix, const int32_t flags,
-                                                     const NVCVBorderType borderMode, const float4 borderValue);
+// CVCUDA_PUBLIC NVCVStatus cvcudaWarpPerspectiveSubmit(NVCVOperatorHandle handle, cudaStream_t stream,
+//                                                      NVCVTensorHandle in, NVCVTensorHandle out,
+//                                                      const NVCVPerspectiveTransform transMatrix, const int32_t flags,
+//                                                      const NVCVBorderType borderMode, const float4 borderValue);
 
-CVCUDA_PUBLIC NVCVStatus cvcudaWarpPerspectiveVarShapeSubmit(NVCVOperatorHandle handle, cudaStream_t stream,
-                                                             NVCVImageBatchHandle in, NVCVImageBatchHandle out,
-                                                             NVCVTensorHandle transMatrix, const int32_t flags,
-                                                             const NVCVBorderType borderMode, const float4 borderValue);
+// CVCUDA_PUBLIC NVCVStatus cvcudaWarpPerspectiveVarShapeSubmit(NVCVOperatorHandle handle, cudaStream_t stream,
+//                                                              NVCVImageBatchHandle in, NVCVImageBatchHandle out,
+//                                                              NVCVTensorHandle transMatrix, const int32_t flags,
+//                                                              const NVCVBorderType borderMode, const float4 borderValue);
 
 #ifdef __cplusplus
 }

@@ -20,8 +20,8 @@
 #include "legacy/CvCudaLegacy.h"
 #include "legacy/CvCudaLegacyHelpers.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <util/CheckError.hpp>
+#include "../../nvcv_types/include/nvcv/Exception.hpp"
+#include "../../util/CheckError.hpp"
 
 namespace cvcuda::priv {
 
@@ -35,92 +35,92 @@ Erase::Erase(int num_erasing_area)
     m_legacyOpVarShape = std::make_unique<legacy::EraseVarShape>(maxIn, maxOut, num_erasing_area);
 }
 
-void Erase::operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out, nvcv::ITensor &anchor,
-                       nvcv::ITensor &erasing, nvcv::ITensor &values, nvcv::ITensor &imgIdx, bool random,
-                       unsigned int seed) const
-{
-    auto inData = in.exportData<nvcv::TensorDataStridedCuda>();
-    if (inData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Input must be cuda-accessible, pitch-linear tensor");
-    }
+// void Erase::operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out, nvcv::ITensor &anchor,
+//                        nvcv::ITensor &erasing, nvcv::ITensor &values, nvcv::ITensor &imgIdx, bool random,
+//                        unsigned int seed) const
+// {
+//     auto inData = in.exportData<nvcv::TensorDataStridedCuda>();
+//     if (inData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Input must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    auto outData = out.exportData<nvcv::TensorDataStridedCuda>();
-    if (outData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Output must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto outData = out.exportData<nvcv::TensorDataStridedCuda>();
+//     if (outData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Output must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    auto anchorData = anchor.exportData<nvcv::TensorDataStridedCuda>();
-    if (anchorData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "anchor must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto anchorData = anchor.exportData<nvcv::TensorDataStridedCuda>();
+//     if (anchorData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "anchor must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    auto erasingData = erasing.exportData<nvcv::TensorDataStridedCuda>();
-    if (erasingData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "erasing must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto erasingData = erasing.exportData<nvcv::TensorDataStridedCuda>();
+//     if (erasingData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "erasing must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    auto valuesData = values.exportData<nvcv::TensorDataStridedCuda>();
-    if (valuesData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "values must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto valuesData = values.exportData<nvcv::TensorDataStridedCuda>();
+//     if (valuesData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "values must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    auto imgIdxData = imgIdx.exportData<nvcv::TensorDataStridedCuda>();
-    if (imgIdxData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "imgIdx must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto imgIdxData = imgIdx.exportData<nvcv::TensorDataStridedCuda>();
+//     if (imgIdxData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "imgIdx must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    bool inplace = (in.handle() == out.handle());
-    NVCV_CHECK_THROW(m_legacyOp->infer(*inData, *outData, *anchorData, *erasingData, *valuesData, *imgIdxData, random,
-                                       seed, inplace, stream));
-}
+//     bool inplace = (in.handle() == out.handle());
+//     NVCV_CHECK_THROW(m_legacyOp->infer(*inData, *outData, *anchorData, *erasingData, *valuesData, *imgIdxData, random,
+//                                        seed, inplace, stream));
+// }
 
-void Erase::operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, const nvcv::IImageBatchVarShape &out,
-                       nvcv::ITensor &anchor, nvcv::ITensor &erasing, nvcv::ITensor &values, nvcv::ITensor &imgIdx,
-                       bool random, unsigned int seed) const
-{
-    auto anchorData = anchor.exportData<nvcv::TensorDataStridedCuda>();
-    if (anchorData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "anchor must be cuda-accessible, pitch-linear tensor");
-    }
+// void Erase::operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, const nvcv::IImageBatchVarShape &out,
+//                        nvcv::ITensor &anchor, nvcv::ITensor &erasing, nvcv::ITensor &values, nvcv::ITensor &imgIdx,
+//                        bool random, unsigned int seed) const
+// {
+//     auto anchorData = anchor.exportData<nvcv::TensorDataStridedCuda>();
+//     if (anchorData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "anchor must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    auto erasingData = erasing.exportData<nvcv::TensorDataStridedCuda>();
-    if (erasingData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "erasing must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto erasingData = erasing.exportData<nvcv::TensorDataStridedCuda>();
+//     if (erasingData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "erasing must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    auto valuesData = values.exportData<nvcv::TensorDataStridedCuda>();
-    if (valuesData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "values must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto valuesData = values.exportData<nvcv::TensorDataStridedCuda>();
+//     if (valuesData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "values must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    auto imgIdxData = imgIdx.exportData<nvcv::TensorDataStridedCuda>();
-    if (imgIdxData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "imgIdx must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto imgIdxData = imgIdx.exportData<nvcv::TensorDataStridedCuda>();
+//     if (imgIdxData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "imgIdx must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    bool inplace = (in.handle() == out.handle());
-    NVCV_CHECK_THROW(m_legacyOpVarShape->infer(in, out, *anchorData, *erasingData, *valuesData, *imgIdxData, random,
-                                               seed, inplace, stream));
-}
+//     bool inplace = (in.handle() == out.handle());
+//     NVCV_CHECK_THROW(m_legacyOpVarShape->infer(in, out, *anchorData, *erasingData, *valuesData, *imgIdxData, random,
+//                                                seed, inplace, stream));
+// }
 
 } // namespace cvcuda::priv

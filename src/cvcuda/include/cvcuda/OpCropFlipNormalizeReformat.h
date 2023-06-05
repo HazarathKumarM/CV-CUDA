@@ -29,12 +29,12 @@
 #include "Operator.h"
 #include "detail/Export.h"
 
-#include <cuda_runtime.h>
-#include <nvcv/BorderType.h>
-#include <nvcv/ImageBatch.h>
-#include <nvcv/Rect.h>
-#include <nvcv/Status.h>
-#include <nvcv/Tensor.h>
+// #include <cuda_runtime.h>
+#include "../../../nvcv_types/include/nvcv/BorderType.h"
+#include "../../../nvcv_types/include/nvcv/ImageBatch.h"
+#include "../../../nvcv_types/include/nvcv/Rect.h"
+#include "../../../nvcv_types/include/nvcv/Status.h"
+#include "../../../nvcv_types/include/nvcv/Tensor.h"
 
 #ifdef __cplusplus
 extern "C"
@@ -169,10 +169,10 @@ CVCUDA_PUBLIC NVCVStatus cvcudaCropFlipNormalizeReformatCreate(NVCVOperatorHandl
  * @retval #NVCV_SUCCESS                Operation executed successfully.
  */
 
-CVCUDA_PUBLIC NVCVStatus cvcudaCropFlipNormalizeReformatSubmit(
-    NVCVOperatorHandle handle, cudaStream_t stream, NVCVImageBatchHandle in, NVCVTensorHandle out,
-    NVCVTensorHandle cropRect, NVCVBorderType borderMode, float borderValue, NVCVTensorHandle flipCode,
-    NVCVTensorHandle base, NVCVTensorHandle scale, float global_scale, float shift, float epsilon, uint32_t flags);
+// CVCUDA_PUBLIC NVCVStatus cvcudaCropFlipNormalizeReformatSubmit(
+//     NVCVOperatorHandle handle, cudaStream_t stream, NVCVImageBatchHandle in, NVCVTensorHandle out,
+//     NVCVTensorHandle cropRect, NVCVBorderType borderMode, float borderValue, NVCVTensorHandle flipCode,
+//     NVCVTensorHandle base, NVCVTensorHandle scale, float global_scale, float shift, float epsilon, uint32_t flags);
 
 #ifdef __cplusplus
 }

@@ -20,8 +20,8 @@
 #include "legacy/CvCudaLegacy.h"
 #include "legacy/CvCudaLegacyHelpers.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <util/CheckError.hpp>
+#include "../../nvcv_types/include/nvcv/Exception.hpp"
+#include "../../util/CheckError.hpp"
 
 namespace cvcuda::priv {
 
@@ -35,68 +35,68 @@ AdaptiveThreshold::AdaptiveThreshold(int32_t maxBlockSize, int32_t maxVarShapeBa
         = std::make_unique<legacy::AdaptiveThresholdVarShape>(maxIn, maxOut, maxBlockSize, maxVarShapeBatchSize);
 }
 
-void AdaptiveThreshold::operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out,
-                                   const double maxValue, const NVCVAdaptiveThresholdType adaptiveMethod,
-                                   const NVCVThresholdType thresholdType, const int32_t blockSize, const double c) const
-{
-    auto inData = in.exportData<nvcv::TensorDataStridedCuda>();
-    if (inData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Input must be cuda-accessible, pitch-linear tensor");
-    }
+// void AdaptiveThreshold::operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out,
+//                                    const double maxValue, const NVCVAdaptiveThresholdType adaptiveMethod,
+//                                    const NVCVThresholdType thresholdType, const int32_t blockSize, const double c) const
+// {
+//     auto inData = in.exportData<nvcv::TensorDataStridedCuda>();
+//     if (inData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Input must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    auto outData = out.exportData<nvcv::TensorDataStridedCuda>();
-    if (outData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Output must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto outData = out.exportData<nvcv::TensorDataStridedCuda>();
+//     if (outData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Output must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    NVCV_CHECK_THROW(
-        m_legacyOp->infer(*inData, *outData, maxValue, adaptiveMethod, thresholdType, blockSize, c, stream));
-}
+//     NVCV_CHECK_THROW(
+//         m_legacyOp->infer(*inData, *outData, maxValue, adaptiveMethod, thresholdType, blockSize, c, stream));
+// }
 
-void AdaptiveThreshold::operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in,
-                                   const nvcv::IImageBatchVarShape &out, const nvcv::ITensor &maxValue,
-                                   const NVCVAdaptiveThresholdType adaptiveMethod,
-                                   const NVCVThresholdType thresholdType, const nvcv::ITensor &blockSize,
-                                   const nvcv::ITensor &c) const
-{
-    auto inData = in.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
-    if (inData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT, "Input must be varshape image batch");
-    }
+// void AdaptiveThreshold::operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in,
+//                                    const nvcv::IImageBatchVarShape &out, const nvcv::ITensor &maxValue,
+//                                    const NVCVAdaptiveThresholdType adaptiveMethod,
+//                                    const NVCVThresholdType thresholdType, const nvcv::ITensor &blockSize,
+//                                    const nvcv::ITensor &c) const
+// {
+//     auto inData = in.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
+//     if (inData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT, "Input must be varshape image batch");
+//     }
 
-    auto outData = out.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
-    if (outData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT, "Output must be varshape image batch");
-    }
+//     auto outData = out.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
+//     if (outData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT, "Output must be varshape image batch");
+//     }
 
-    auto maxvalueData = maxValue.exportData<nvcv::TensorDataStridedCuda>();
-    if (maxvalueData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "maxValue must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto maxvalueData = maxValue.exportData<nvcv::TensorDataStridedCuda>();
+//     if (maxvalueData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "maxValue must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    auto blocksizeData = blockSize.exportData<nvcv::TensorDataStridedCuda>();
-    if (blocksizeData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "blockSize must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto blocksizeData = blockSize.exportData<nvcv::TensorDataStridedCuda>();
+//     if (blocksizeData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "blockSize must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    auto cData = c.exportData<nvcv::TensorDataStridedCuda>();
-    if (cData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT, "C must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto cData = c.exportData<nvcv::TensorDataStridedCuda>();
+//     if (cData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT, "C must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    NVCV_CHECK_THROW(m_legacyOpVarShape->infer(*inData, *outData, *maxvalueData, adaptiveMethod, thresholdType,
-                                               *blocksizeData, *cData, stream));
-}
+//     NVCV_CHECK_THROW(m_legacyOpVarShape->infer(*inData, *outData, *maxvalueData, adaptiveMethod, thresholdType,
+//                                                *blocksizeData, *cData, stream));
+// }
 
 } // namespace cvcuda::priv

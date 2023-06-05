@@ -20,8 +20,8 @@
 #include "legacy/CvCudaLegacy.h"
 #include "legacy/CvCudaLegacyHelpers.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <util/CheckError.hpp>
+#include "../../nvcv_types/include/nvcv/Exception.hpp"
+#include "../../util/CheckError.hpp"
 
 namespace cvcuda::priv {
 
@@ -35,54 +35,54 @@ Rotate::Rotate(const int maxVarShapeBatchSize)
     m_legacyOpVarShape = std::make_unique<legacy::RotateVarShape>(maxVarShapeBatchSize);
 }
 
-void Rotate::operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out, const double angleDeg,
-                        const double2 shift, const NVCVInterpolationType interpolation) const
-{
-    auto inData = in.exportData<nvcv::TensorDataStridedCuda>();
-    if (inData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Input must be cuda-accessible, pitch-linear tensor");
-    }
+// void Rotate::operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out, const double angleDeg,
+//                         const double2 shift, const NVCVInterpolationType interpolation) const
+// {
+//     auto inData = in.exportData<nvcv::TensorDataStridedCuda>();
+//     if (inData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Input must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    auto outData = out.exportData<nvcv::TensorDataStridedCuda>();
-    if (outData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Output must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto outData = out.exportData<nvcv::TensorDataStridedCuda>();
+//     if (outData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Output must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    NVCV_CHECK_THROW(m_legacyOp->infer(*inData, *outData, angleDeg, shift, interpolation, stream));
-}
+//     NVCV_CHECK_THROW(m_legacyOp->infer(*inData, *outData, angleDeg, shift, interpolation, stream));
+// }
 
-void Rotate::operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, const nvcv::IImageBatchVarShape &out,
-                        nvcv::ITensor &angleDeg, nvcv::ITensor &shift, const NVCVInterpolationType interpolation) const
-{
-    auto inData = in.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
-    if (inData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT, "Input must be varshape image batch");
-    }
+// void Rotate::operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, const nvcv::IImageBatchVarShape &out,
+//                         nvcv::ITensor &angleDeg, nvcv::ITensor &shift, const NVCVInterpolationType interpolation) const
+// {
+//     auto inData = in.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
+//     if (inData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT, "Input must be varshape image batch");
+//     }
 
-    auto outData = out.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
-    if (outData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT, "Output must be varshape image batch");
-    }
+//     auto outData = out.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
+//     if (outData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT, "Output must be varshape image batch");
+//     }
 
-    auto angleDegData = angleDeg.exportData<nvcv::TensorDataStridedCuda>();
-    if (angleDegData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT, "angleDeg must be a tensor");
-    }
+//     auto angleDegData = angleDeg.exportData<nvcv::TensorDataStridedCuda>();
+//     if (angleDegData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT, "angleDeg must be a tensor");
+//     }
 
-    auto shiftData = shift.exportData<nvcv::TensorDataStridedCuda>();
-    if (shiftData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT, "shift must be a tensor");
-    }
+//     auto shiftData = shift.exportData<nvcv::TensorDataStridedCuda>();
+//     if (shiftData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT, "shift must be a tensor");
+//     }
 
-    NVCV_CHECK_THROW(m_legacyOpVarShape->infer(*inData, *outData, *angleDegData, *shiftData, interpolation, stream));
-}
+//     NVCV_CHECK_THROW(m_legacyOpVarShape->infer(*inData, *outData, *angleDegData, *shiftData, interpolation, stream));
+// }
 
 } // namespace cvcuda::priv

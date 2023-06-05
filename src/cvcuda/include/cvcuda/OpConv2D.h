@@ -30,10 +30,10 @@
 #include "Types.h"
 #include "detail/Export.h"
 
-#include <cuda_runtime.h>
-#include <nvcv/BorderType.h>
-#include <nvcv/Status.h>
-#include <nvcv/Tensor.h>
+// #include <cuda_runtime.h>
+#include "../../../nvcv_types/include/nvcv/BorderType.h"
+#include "../../../nvcv_types/include/nvcv/Status.h"
+#include "../../../nvcv_types/include/nvcv/Tensor.h"
 
 #ifdef __cplusplus
 extern "C"
@@ -119,10 +119,10 @@ CVCUDA_PUBLIC NVCVStatus cvcudaConv2DCreate(NVCVOperatorHandle *handle);
  * @retval #NVCV_ERROR_INTERNAL         Internal error in the operator, invalid types passed in.
  * @retval #NVCV_SUCCESS                Operation executed successfully.
  */
-CVCUDA_PUBLIC NVCVStatus cvcudaConv2DVarShapeSubmit(NVCVOperatorHandle handle, cudaStream_t stream,
-                                                    NVCVImageBatchHandle in, NVCVImageBatchHandle out,
-                                                    NVCVImageBatchHandle kernel, NVCVTensorHandle kernelAnchor,
-                                                    NVCVBorderType borderMode);
+// CVCUDA_PUBLIC NVCVStatus cvcudaConv2DVarShapeSubmit(NVCVOperatorHandle handle, cudaStream_t stream,
+//                                                     NVCVImageBatchHandle in, NVCVImageBatchHandle out,
+//                                                     NVCVImageBatchHandle kernel, NVCVTensorHandle kernelAnchor,
+//                                                     NVCVBorderType borderMode);
 
 #ifdef __cplusplus
 }

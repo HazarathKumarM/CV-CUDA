@@ -20,10 +20,10 @@
 #include "priv/SymbolVersioning.hpp"
 
 #include <cvcuda/OpConv2D.hpp>
-#include <nvcv/Exception.hpp>
-#include <nvcv/ImageBatch.hpp>
-#include <nvcv/Tensor.hpp>
-#include <util/Assert.h>
+#include "../nvcv_types/include/nvcv/Exception.hpp"
+#include "../nvcv_types/include/nvcv/ImageBatch.hpp"
+#include "../nvcv_types/include/nvcv/Tensor.hpp"
+#include "../util/Assert.h"
 
 namespace priv = cvcuda::priv;
 
@@ -42,6 +42,7 @@ CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaConv2DCreate, (NVCVOperatorHandle * ha
         });
 }
 
+/*
 CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaConv2DVarShapeSubmit,
                   (NVCVOperatorHandle handle, cudaStream_t stream, NVCVImageBatchHandle in, NVCVImageBatchHandle out,
                    NVCVImageBatchHandle kernel, NVCVTensorHandle kernelAnchor, NVCVBorderType borderMode))
@@ -53,4 +54,4 @@ CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaConv2DVarShapeSubmit,
             nvcv::TensorWrapHandle             kernelAnchorWrap(kernelAnchor);
             priv::ToDynamicRef<priv::Conv2D>(handle)(stream, inWrap, outWrap, kernelWrap, kernelAnchorWrap, borderMode);
         });
-}
+}*/

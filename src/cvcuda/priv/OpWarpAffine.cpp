@@ -20,8 +20,8 @@
 #include "legacy/CvCudaLegacy.h"
 #include "legacy/CvCudaLegacyHelpers.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <util/CheckError.hpp>
+#include "../../nvcv_types/include/nvcv/Exception.hpp"
+#include "../../util/CheckError.hpp"
 
 namespace cvcuda::priv {
 
@@ -35,52 +35,52 @@ WarpAffine::WarpAffine(const int32_t maxVarShapeBatchSize)
     m_legacyOpVarShape = std::make_unique<legacy::WarpAffineVarShape>(maxVarShapeBatchSize);
 }
 
-void WarpAffine::operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out,
-                            const NVCVAffineTransform xform, const int32_t flags, const NVCVBorderType borderMode,
-                            const float4 borderValue) const
-{
-    auto inData = in.exportData<nvcv::TensorDataStridedCuda>();
-    if (inData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Input must be cuda-accessible, pitch-linear tensor");
-    }
+// void WarpAffine::operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out,
+//                             const NVCVAffineTransform xform, const int32_t flags, const NVCVBorderType borderMode,
+//                             const float4 borderValue) const
+// {
+//     auto inData = in.exportData<nvcv::TensorDataStridedCuda>();
+//     if (inData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Input must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    auto outData = out.exportData<nvcv::TensorDataStridedCuda>();
-    if (outData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "Output must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto outData = out.exportData<nvcv::TensorDataStridedCuda>();
+//     if (outData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "Output must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    NVCV_CHECK_THROW(m_legacyOp->infer(*inData, *outData, xform, flags, borderMode, borderValue, stream));
-}
+//     NVCV_CHECK_THROW(m_legacyOp->infer(*inData, *outData, xform, flags, borderMode, borderValue, stream));
+// }
 
-void WarpAffine::operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in,
-                            const nvcv::IImageBatchVarShape &out, const nvcv::ITensor &transMatrix, const int32_t flags,
-                            const NVCVBorderType borderMode, const float4 borderValue) const
-{
-    auto inData = in.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
-    if (inData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT, "Input must be varshape image batch");
-    }
+// void WarpAffine::operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in,
+//                             const nvcv::IImageBatchVarShape &out, const nvcv::ITensor &transMatrix, const int32_t flags,
+//                             const NVCVBorderType borderMode, const float4 borderValue) const
+// {
+//     auto inData = in.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
+//     if (inData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT, "Input must be varshape image batch");
+//     }
 
-    auto outData = out.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
-    if (outData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT, "Output must be varshape image batch");
-    }
+//     auto outData = out.exportData<nvcv::ImageBatchVarShapeDataStridedCuda>(stream);
+//     if (outData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT, "Output must be varshape image batch");
+//     }
 
-    auto transMatrixData = transMatrix.exportData<nvcv::TensorDataStridedCuda>();
-    if (outData == nullptr)
-    {
-        throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-                              "transformation matrix must be cuda-accessible, pitch-linear tensor");
-    }
+//     auto transMatrixData = transMatrix.exportData<nvcv::TensorDataStridedCuda>();
+//     if (outData == nullptr)
+//     {
+//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+//                               "transformation matrix must be cuda-accessible, pitch-linear tensor");
+//     }
 
-    NVCV_CHECK_THROW(
-        m_legacyOpVarShape->infer(*inData, *outData, *transMatrixData, flags, borderMode, borderValue, stream));
-}
+//     NVCV_CHECK_THROW(
+//         m_legacyOpVarShape->infer(*inData, *outData, *transMatrixData, flags, borderMode, borderValue, stream));
+// }
 
 } // namespace cvcuda::priv

@@ -18,8 +18,8 @@
 #ifndef CVCUDA_PRIV_VERSION_HPP
 #define CVCUDA_PRIV_VERSION_HPP
 
-#include <cvcuda/Version.h>
-#include <util/Version.hpp>
+#include "../include/cvcuda/Version.h"
+#include "../../util/Version.hpp"
 
 namespace cvcuda::priv {
 

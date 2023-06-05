@@ -29,11 +29,11 @@
 #include "IOperator.hpp"
 #include "OpAdaptiveThreshold.h"
 
-#include <cuda_runtime.h>
-#include <nvcv/IImageBatch.hpp>
-#include <nvcv/ITensor.hpp>
-#include <nvcv/ImageFormat.hpp>
-#include <nvcv/alloc/Requirements.hpp>
+// #include <cuda_runtime.h>
+#include "../../../nvcv_types/include/nvcv/IImageBatch.hpp"
+#include "../../../nvcv_types/include/nvcv/ITensor.hpp"
+#include "../../../nvcv_types/include/nvcv/ImageFormat.hpp"
+#include "../../../nvcv_types/include/nvcv/alloc/Requirements.hpp"
 
 namespace cvcuda {
 
@@ -44,12 +44,12 @@ public:
 
     ~AdaptiveThreshold();
 
-    void operator()(cudaStream_t stream, nvcv::ITensor &in, nvcv::ITensor &out, double maxValue,
-                    NVCVAdaptiveThresholdType adaptiveMethod, NVCVThresholdType thresholdType, int32_t blockSize,
-                    double c);
-    void operator()(cudaStream_t stream, nvcv::IImageBatchVarShape &in, nvcv::IImageBatchVarShape &out,
-                    nvcv::ITensor &maxValue, NVCVAdaptiveThresholdType adaptiveMethod, NVCVThresholdType thresholdType,
-                    nvcv::ITensor &blockSize, nvcv::ITensor &c);
+    // void operator()(cudaStream_t stream, nvcv::ITensor &in, nvcv::ITensor &out, double maxValue,
+    //                 NVCVAdaptiveThresholdType adaptiveMethod, NVCVThresholdType thresholdType, int32_t blockSize,
+    //                 double c);
+    // void operator()(cudaStream_t stream, nvcv::IImageBatchVarShape &in, nvcv::IImageBatchVarShape &out,
+    //                 nvcv::ITensor &maxValue, NVCVAdaptiveThresholdType adaptiveMethod, NVCVThresholdType thresholdType,
+    //                 nvcv::ITensor &blockSize, nvcv::ITensor &c);
 
     virtual NVCVOperatorHandle handle() const noexcept override;
 
@@ -69,23 +69,23 @@ inline AdaptiveThreshold::~AdaptiveThreshold()
     m_handle = nullptr;
 }
 
-inline void AdaptiveThreshold::operator()(cudaStream_t stream, nvcv::ITensor &in, nvcv::ITensor &out, double maxValue,
-                                          NVCVAdaptiveThresholdType adaptiveMethod, NVCVThresholdType thresholdType,
-                                          int32_t blockSize, double c)
-{
-    nvcv::detail::CheckThrow(cvcudaAdaptiveThresholdSubmit(m_handle, stream, in.handle(), out.handle(), maxValue,
-                                                           adaptiveMethod, thresholdType, blockSize, c));
-}
+// inline void AdaptiveThreshold::operator()(cudaStream_t stream, nvcv::ITensor &in, nvcv::ITensor &out, double maxValue,
+//                                           NVCVAdaptiveThresholdType adaptiveMethod, NVCVThresholdType thresholdType,
+//                                           int32_t blockSize, double c)
+// {
+//     nvcv::detail::CheckThrow(cvcudaAdaptiveThresholdSubmit(m_handle, stream, in.handle(), out.handle(), maxValue,
+//                                                            adaptiveMethod, thresholdType, blockSize, c));
+// }
 
-inline void AdaptiveThreshold::operator()(cudaStream_t stream, nvcv::IImageBatchVarShape &in,
-                                          nvcv::IImageBatchVarShape &out, nvcv::ITensor &maxValue,
-                                          NVCVAdaptiveThresholdType adaptiveMethod, NVCVThresholdType thresholdType,
-                                          nvcv::ITensor &blockSize, nvcv::ITensor &c)
-{
-    nvcv::detail::CheckThrow(cvcudaAdaptiveThresholdVarShapeSubmit(m_handle, stream, in.handle(), out.handle(),
-                                                                   maxValue.handle(), adaptiveMethod, thresholdType,
-                                                                   blockSize.handle(), c.handle()));
-}
+// inline void AdaptiveThreshold::operator()(cudaStream_t stream, nvcv::IImageBatchVarShape &in,
+//                                           nvcv::IImageBatchVarShape &out, nvcv::ITensor &maxValue,
+//                                           NVCVAdaptiveThresholdType adaptiveMethod, NVCVThresholdType thresholdType,
+//                                           nvcv::ITensor &blockSize, nvcv::ITensor &c)
+// {
+//     nvcv::detail::CheckThrow(cvcudaAdaptiveThresholdVarShapeSubmit(m_handle, stream, in.handle(), out.handle(),
+//                                                                    maxValue.handle(), adaptiveMethod, thresholdType,
+//                                                                    blockSize.handle(), c.handle()));
+// }
 
 inline NVCVOperatorHandle AdaptiveThreshold::handle() const noexcept
 {

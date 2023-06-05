@@ -30,11 +30,11 @@
 #include "Types.h"
 #include "detail/Export.h"
 
-#include <cuda_runtime.h>
-#include <nvcv/BorderType.h>
-#include <nvcv/ImageBatch.h>
-#include <nvcv/Status.h>
-#include <nvcv/Tensor.h>
+// #include <cuda_runtime.h>
+#include "../../../nvcv_types/include/nvcv/BorderType.h"
+#include "../../../nvcv_types/include/nvcv/ImageBatch.h"
+#include "../../../nvcv_types/include/nvcv/Status.h"
+#include "../../../nvcv_types/include/nvcv/Tensor.h"
 
 #ifdef __cplusplus
 extern "C"
@@ -189,24 +189,24 @@ CVCUDA_PUBLIC NVCVStatus cvcudaRemapCreate(NVCVOperatorHandle *handle);
  * @retval #NVCV_ERROR_INTERNAL         Internal error in the operator, invalid types passed in.
  * @retval #NVCV_SUCCESS                Operation executed successfully.
  */
-CVCUDA_PUBLIC NVCVStatus cvcudaRemapSubmit(NVCVOperatorHandle handle, cudaStream_t stream, NVCVTensorHandle in,
-                                           NVCVTensorHandle out, NVCVTensorHandle map, NVCVInterpolationType inInterp,
-                                           NVCVInterpolationType mapInterp, NVCVRemapMapValueType mapValueType,
-                                           int8_t alignCorners, NVCVBorderType border, float4 borderValue);
+// CVCUDA_PUBLIC NVCVStatus cvcudaRemapSubmit(NVCVOperatorHandle handle, cudaStream_t stream, NVCVTensorHandle in,
+//                                            NVCVTensorHandle out, NVCVTensorHandle map, NVCVInterpolationType inInterp,
+//                                            NVCVInterpolationType mapInterp, NVCVRemapMapValueType mapValueType,
+//                                            int8_t alignCorners, NVCVBorderType border, float4 borderValue);
 
-/**
- * Executes the Remap operation on a batch of images.
- *
- * Apart from input and output image batches, all parameters are the same as \ref cvcudaRemapSubmit.
- *
- * @param[in] in Input image batch.
- * @param[out] out Output image batch.
- */
-CVCUDA_PUBLIC NVCVStatus cvcudaRemapVarShapeSubmit(NVCVOperatorHandle handle, cudaStream_t stream,
-                                                   NVCVImageBatchHandle in, NVCVImageBatchHandle out,
-                                                   NVCVTensorHandle map, NVCVInterpolationType inInterp,
-                                                   NVCVInterpolationType mapInterp, NVCVRemapMapValueType mapValueType,
-                                                   int8_t alignCorners, NVCVBorderType border, float4 borderValue);
+// /**
+//  * Executes the Remap operation on a batch of images.
+//  *
+//  * Apart from input and output image batches, all parameters are the same as \ref cvcudaRemapSubmit.
+//  *
+//  * @param[in] in Input image batch.
+//  * @param[out] out Output image batch.
+//  */
+// CVCUDA_PUBLIC NVCVStatus cvcudaRemapVarShapeSubmit(NVCVOperatorHandle handle, cudaStream_t stream,
+//                                                    NVCVImageBatchHandle in, NVCVImageBatchHandle out,
+//                                                    NVCVTensorHandle map, NVCVInterpolationType inInterp,
+//                                                    NVCVInterpolationType mapInterp, NVCVRemapMapValueType mapValueType,
+//                                                    int8_t alignCorners, NVCVBorderType border, float4 borderValue);
 
 #ifdef __cplusplus
 }

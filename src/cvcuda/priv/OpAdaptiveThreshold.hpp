@@ -27,8 +27,8 @@
 #include "IOperator.hpp"
 #include "legacy/CvCudaLegacy.h"
 
-#include <nvcv/IImageBatch.hpp>
-#include <nvcv/ITensor.hpp>
+#include "../../nvcv_types/include/nvcv/IImageBatch.hpp"
+#include "../../nvcv_types/include/nvcv/ITensor.hpp"
 
 #include <memory>
 
@@ -39,13 +39,13 @@ class AdaptiveThreshold final : public IOperator
 public:
     explicit AdaptiveThreshold(int32_t maxBlockSize, int32_t maxVarShapeBatchSize);
 
-    void operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out, const double maxValue,
-                    const NVCVAdaptiveThresholdType adaptiveMethod, const NVCVThresholdType thresholdType,
-                    const int32_t blockSize, const double c) const;
-    void operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, const nvcv::IImageBatchVarShape &out,
-                    const nvcv::ITensor &maxValue, const NVCVAdaptiveThresholdType adaptiveMethod,
-                    const NVCVThresholdType thresholdType, const nvcv::ITensor &blockSize,
-                    const nvcv::ITensor &c) const;
+    // void operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out, const double maxValue,
+    //                 const NVCVAdaptiveThresholdType adaptiveMethod, const NVCVThresholdType thresholdType,
+    //                 const int32_t blockSize, const double c) const;
+    // void operator()(cudaStream_t stream, const nvcv::IImageBatchVarShape &in, const nvcv::IImageBatchVarShape &out,
+    //                 const nvcv::ITensor &maxValue, const NVCVAdaptiveThresholdType adaptiveMethod,
+    //                 const NVCVThresholdType thresholdType, const nvcv::ITensor &blockSize,
+                    // const nvcv::ITensor &c) const;
 
 private:
     std::unique_ptr<nvcv::legacy::cuda_op::AdaptiveThreshold>         m_legacyOp;

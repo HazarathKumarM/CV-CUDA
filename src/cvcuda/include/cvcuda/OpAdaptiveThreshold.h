@@ -30,10 +30,10 @@
 #include "Types.h"
 #include "detail/Export.h"
 
-#include <cuda_runtime.h>
-#include <nvcv/ImageBatch.h>
-#include <nvcv/Status.h>
-#include <nvcv/Tensor.h>
+// #include <cuda_runtime.h>
+#include "../../../nvcv_types/include/nvcv/ImageBatch.h"
+#include "../../../nvcv_types/include/nvcv/Status.h"
+#include "../../../nvcv_types/include/nvcv/Tensor.h"
 
 #ifdef __cplusplus
 extern "C"
@@ -123,17 +123,17 @@ CVCUDA_PUBLIC NVCVStatus cvcudaAdaptiveThresholdCreate(NVCVOperatorHandle *handl
  * @retval #NVCV_ERROR_INTERNAL         Internal error in the operator, invalid types passed in.
  * @retval #NVCV_SUCCESS                Operation executed successfully.
  */
-CVCUDA_PUBLIC NVCVStatus cvcudaAdaptiveThresholdSubmit(NVCVOperatorHandle handle, cudaStream_t stream,
-                                                       NVCVTensorHandle in, NVCVTensorHandle out, double maxValue,
-                                                       NVCVAdaptiveThresholdType adaptiveMethod,
-                                                       NVCVThresholdType thresholdType, int32_t blockSize, double c);
+// CVCUDA_PUBLIC NVCVStatus cvcudaAdaptiveThresholdSubmit(NVCVOperatorHandle handle, cudaStream_t stream,
+//                                                        NVCVTensorHandle in, NVCVTensorHandle out, double maxValue,
+//                                                        NVCVAdaptiveThresholdType adaptiveMethod,
+//                                                        NVCVThresholdType thresholdType, int32_t blockSize, double c);
 
-CVCUDA_PUBLIC NVCVStatus cvcudaAdaptiveThresholdVarShapeSubmit(NVCVOperatorHandle handle, cudaStream_t stream,
-                                                               NVCVImageBatchHandle in, NVCVImageBatchHandle out,
-                                                               NVCVTensorHandle          maxValue,
-                                                               NVCVAdaptiveThresholdType adaptiveMethod,
-                                                               NVCVThresholdType         thresholdType,
-                                                               NVCVTensorHandle blockSize, NVCVTensorHandle c);
+// CVCUDA_PUBLIC NVCVStatus cvcudaAdaptiveThresholdVarShapeSubmit(NVCVOperatorHandle handle, cudaStream_t stream,
+//                                                                NVCVImageBatchHandle in, NVCVImageBatchHandle out,
+//                                                                NVCVTensorHandle          maxValue,
+//                                                                NVCVAdaptiveThresholdType adaptiveMethod,
+//                                                                NVCVThresholdType         thresholdType,
+//                                                                NVCVTensorHandle blockSize, NVCVTensorHandle c);
 
 #ifdef __cplusplus
 }

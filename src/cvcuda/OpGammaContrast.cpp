@@ -19,10 +19,10 @@
 
 #include "priv/SymbolVersioning.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <nvcv/ImageBatch.hpp>
-#include <nvcv/Tensor.hpp>
-#include <util/Assert.h>
+#include "../nvcv_types/include/nvcv/Exception.hpp"
+#include "../nvcv_types/include/nvcv/ImageBatch.hpp"
+#include "../nvcv_types/include/nvcv/Tensor.hpp"
+#include "../util/Assert.h"
 
 namespace priv = cvcuda::priv;
 
@@ -44,6 +44,7 @@ CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaGammaContrastCreate,
         });
 }
 
+/*
 CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaGammaContrastVarShapeSubmit,
                   (NVCVOperatorHandle handle, cudaStream_t stream, NVCVImageBatchHandle in, NVCVImageBatchHandle out,
                    NVCVTensorHandle gamma))
@@ -56,3 +57,4 @@ CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaGammaContrastVarShapeSubmit,
             priv::ToDynamicRef<priv::GammaContrast>(handle)(stream, inWrap, outWrap, gammaWrap);
         });
 }
+*/

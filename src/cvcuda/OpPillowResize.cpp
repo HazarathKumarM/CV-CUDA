@@ -19,10 +19,10 @@
 
 #include "priv/SymbolVersioning.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <nvcv/ImageBatch.hpp>
-#include <nvcv/Tensor.hpp>
-#include <util/Assert.h>
+#include "../nvcv_types/include/nvcv/Exception.hpp"
+#include "../nvcv_types/include/nvcv/ImageBatch.hpp"
+#include "../nvcv_types/include/nvcv/Tensor.hpp"
+#include "../util/Assert.h"
 
 namespace priv = cvcuda::priv;
 
@@ -43,6 +43,7 @@ CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaPillowResizeCreate,
         });
 }
 
+/*
 CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaPillowResizeSubmit,
                   (NVCVOperatorHandle handle, cudaStream_t stream, NVCVTensorHandle in, NVCVTensorHandle out,
                    const NVCVInterpolationType interpolation))
@@ -66,3 +67,4 @@ CVCUDA_DEFINE_API(0, 2, NVCVStatus, nvcvopPillowResizeVarShapeSubmit,
             priv::ToDynamicRef<priv::PillowResize>(handle)(stream, input, output, interpolation);
         });
 }
+*/

@@ -41,12 +41,12 @@ NVCVImageRequirements Image::CalcRequirements(Size2D size, ImageFormat fmt, int3
     reqs.mem    = {};
 
     int dev;
-    NVCV_CHECK_THROW(cudaGetDevice(&dev));
+    // NVCV_CHECK_THROW(cudaGetDevice(&dev));
 
     int rowAlign;
     if (userRowAlign == 0)
     {
-        NVCV_CHECK_THROW(cudaDeviceGetAttribute(&rowAlign, cudaDevAttrTexturePitchAlignment, dev));
+        // NVCV_CHECK_THROW(cudaDeviceGetAttribute(&rowAlign, cudaDevAttrTexturePitchAlignment, dev));
     }
     else
     {
@@ -81,7 +81,7 @@ NVCVImageRequirements Image::CalcRequirements(Size2D size, ImageFormat fmt, int3
     int baseAlign;
     if (userBaseAlign == 0)
     {
-        NVCV_CHECK_THROW(cudaDeviceGetAttribute(&baseAlign, cudaDevAttrTextureAlignment, dev));
+        // NVCV_CHECK_THROW(cudaDeviceGetAttribute(&baseAlign, cudaDevAttrTextureAlignment, dev));
     }
     else
     {

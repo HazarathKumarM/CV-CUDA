@@ -29,10 +29,10 @@
 #include "IOperator.hpp"
 #include "OpConv2D.h"
 
-#include <cuda_runtime.h>
-#include <nvcv/IImageBatch.hpp>
-#include <nvcv/ITensor.hpp>
-#include <nvcv/alloc/Requirements.hpp>
+// #include <cuda_runtime.h>
+#include "../../../nvcv_types/include/nvcv/IImageBatch.hpp"
+#include "../../../nvcv_types/include/nvcv/ITensor.hpp"
+#include "../../../nvcv_types/include/nvcv/alloc/Requirements.hpp"
 
 namespace cvcuda {
 
@@ -43,8 +43,8 @@ public:
 
     ~Conv2D();
 
-    void operator()(cudaStream_t stream, nvcv::IImageBatch &in, nvcv::IImageBatch &out, nvcv::IImageBatch &kernel,
-                    nvcv::ITensor &kernelAnchor, NVCVBorderType borderMode);
+    // void operator()(cudaStream_t stream, nvcv::IImageBatch &in, nvcv::IImageBatch &out, nvcv::IImageBatch &kernel,
+    //                 nvcv::ITensor &kernelAnchor, NVCVBorderType borderMode);
 
     virtual NVCVOperatorHandle handle() const noexcept override;
 
@@ -64,12 +64,12 @@ inline Conv2D::~Conv2D()
     m_handle = nullptr;
 }
 
-inline void Conv2D::operator()(cudaStream_t stream, nvcv::IImageBatch &in, nvcv::IImageBatch &out,
-                               nvcv::IImageBatch &kernel, nvcv::ITensor &kernelAnchor, NVCVBorderType borderMode)
-{
-    nvcv::detail::CheckThrow(cvcudaConv2DVarShapeSubmit(m_handle, stream, in.handle(), out.handle(), kernel.handle(),
-                                                        kernelAnchor.handle(), borderMode));
-}
+// inline void Conv2D::operator()(cudaStream_t stream, nvcv::IImageBatch &in, nvcv::IImageBatch &out,
+//                                nvcv::IImageBatch &kernel, nvcv::ITensor &kernelAnchor, NVCVBorderType borderMode)
+// {
+//     nvcv::detail::CheckThrow(cvcudaConv2DVarShapeSubmit(m_handle, stream, in.handle(), out.handle(), kernel.handle(),
+//                                                         kernelAnchor.handle(), borderMode));
+// }
 
 inline NVCVOperatorHandle Conv2D::handle() const noexcept
 {

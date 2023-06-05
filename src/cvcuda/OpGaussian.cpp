@@ -19,10 +19,10 @@
 
 #include "priv/SymbolVersioning.hpp"
 
-#include <nvcv/Exception.hpp>
-#include <nvcv/ImageBatch.hpp>
-#include <nvcv/Tensor.hpp>
-#include <util/Assert.h>
+#include "../nvcv_types/include/nvcv/Exception.hpp"
+#include "../nvcv_types/include/nvcv/ImageBatch.hpp"
+#include "../nvcv_types/include/nvcv/Tensor.hpp"
+#include "../util/Assert.h"
 
 namespace priv = cvcuda::priv;
 
@@ -44,6 +44,7 @@ CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaGaussianCreate,
         });
 }
 
+/*
 CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaGaussianSubmit,
                   (NVCVOperatorHandle handle, cudaStream_t stream, NVCVTensorHandle in, NVCVTensorHandle out,
                    int32_t kernelWidth, int32_t kernelHeight, double sigmaX, double sigmaY, NVCVBorderType borderMode))
@@ -69,3 +70,4 @@ CVCUDA_DEFINE_API(0, 2, NVCVStatus, cvcudaGaussianVarShapeSubmit,
             priv::ToDynamicRef<priv::Gaussian>(handle)(stream, inWrap, outWrap, kernelSizeWrap, sigmaWrap, borderMode);
         });
 }
+*/
