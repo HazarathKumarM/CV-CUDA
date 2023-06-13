@@ -18,6 +18,9 @@
 #ifndef NVCV_RECT_H
 #define NVCV_RECT_H
 
+#include <cstdint>
+// typedef signed int int32_t
+
 #ifdef __cplusplus
 extern "C"
 {

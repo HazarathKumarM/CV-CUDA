@@ -30,7 +30,7 @@
 #include "Types.h"
 #include "detail/Export.h"
 
-#include <cuda_runtime.h>
+// #include <cuda_runtime.h>
 #include <nvcv/ImageBatch.h>
 #include <nvcv/Status.h>
 #include <nvcv/Tensor.h>
@@ -112,10 +112,10 @@ CVCUDA_PUBLIC NVCVStatus cvcudaResizeCreate(NVCVOperatorHandle *handle);
  * @retval #NVCV_SUCCESS                Operation executed successfully.
  */
 /** @{ */
-CVCUDA_PUBLIC NVCVStatus cvcudaResizeSubmit(NVCVOperatorHandle handle, cudaStream_t stream, NVCVTensorHandle in,
+CVCUDA_PUBLIC NVCVStatus cvcudaResizeSubmit(NVCVOperatorHandle handle, NVCVTensorHandle in,
                                             NVCVTensorHandle out, const NVCVInterpolationType interpolation);
 
-CVCUDA_PUBLIC NVCVStatus cvcudaResizeVarShapeSubmit(NVCVOperatorHandle handle, cudaStream_t stream,
+CVCUDA_PUBLIC NVCVStatus cvcudaResizeVarShapeSubmit(NVCVOperatorHandle handle,
                                                     NVCVImageBatchHandle in, NVCVImageBatchHandle out,
                                                     const NVCVInterpolationType interpolation);
 /** @} */

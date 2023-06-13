@@ -34,24 +34,27 @@ CustomCrop::CustomCrop()
     m_legacyOp = std::make_unique<legacy::CustomCrop>(maxIn, maxOut);
 }
 
-// void CustomCrop::operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out,
-//                             const NVCVRectI &cropRect) const
-// {
-//     auto inData = in.exportData<nvcv::TensorDataStridedCuda>();
-//     if (inData == nullptr)
-//     {
-//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-//                               "Input must be cuda-accessible, pitch-linear tensor");
-//     }
+void CustomCrop::operator()(const nvcv::ITensor &in, const nvcv::ITensor &out,
+                            const NVCVRectI &cropRect) const
+{
+    // auto inData = in.exportData<nvcv::TensorDataStridedCuda>();
+    auto inData = nullptr;
+    if (inData == nullptr)
+    {
+        // throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+                            //   "Input must be cuda-accessible, pitch-linear tensor");
+        std::cerr<<"\n Empty Input";
+    }
+    auto outData = nullptr;
+    // auto outData = out.exportData<nvcv::TensorDataStridedCuda>();
+    if (outData == nullptr)
+    {
+        // throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
+        //                       "Output must be cuda-accessible, pitch-linear tensor");
+        std::cerr<<"\n Empty output";
+    }
 
-//     auto outData = out.exportData<nvcv::TensorDataStridedCuda>();
-//     if (outData == nullptr)
-//     {
-//         throw nvcv::Exception(nvcv::Status::ERROR_INVALID_ARGUMENT,
-//                               "Output must be cuda-accessible, pitch-linear tensor");
-//     }
-
-//     NVCV_CHECK_THROW(m_legacyOp->infer(*inData, *outData, cropRect, stream));
-// }
+    // NVCV_CHECK_THROW(m_legacyOp->infer(*inData, *outData, cropRect));
+}
 
 } // namespace cvcuda::priv

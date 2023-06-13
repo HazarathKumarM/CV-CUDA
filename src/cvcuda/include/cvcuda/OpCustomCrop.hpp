@@ -29,10 +29,13 @@
 #include "IOperator.hpp"
 #include "OpCustomCrop.h"
 
-#include <cuda_runtime.h>
-#include <nvcv/ITensor.hpp>
-#include <nvcv/ImageFormat.hpp>
-#include <nvcv/alloc/Requirements.hpp>
+// #include <cuda_runtime.h>
+// #include <nvcv/ITensor.hpp>
+#include "../../../nvcv_types/include/nvcv/ITensor.hpp"
+// #include <nvcv/ImageFormat.hpp>
+// #include <nvcv/alloc/Requirements.hpp>
+#include "../../../nvcv_types/include/nvcv/ImageFormat.hpp"
+#include "../../../nvcv_types/include/nvcv/alloc/Requirements.hpp"
 
 namespace cvcuda {
 
@@ -43,7 +46,7 @@ public:
 
     ~CustomCrop();
 
-    void operator()(cudaStream_t stream, nvcv::ITensor &in, nvcv::ITensor &out, const NVCVRectI cropRect);
+    void operator()(nvcv::ITensor &in, nvcv::ITensor &out, const NVCVRectI cropRect);
 
     virtual NVCVOperatorHandle handle() const noexcept override;
 
@@ -63,9 +66,9 @@ inline CustomCrop::~CustomCrop()
     m_handle = nullptr;
 }
 
-inline void CustomCrop::operator()(cudaStream_t stream, nvcv::ITensor &in, nvcv::ITensor &out, const NVCVRectI cropRect)
+inline void CustomCrop::operator()(nvcv::ITensor &in, nvcv::ITensor &out, const NVCVRectI cropRect)
 {
-    nvcv::detail::CheckThrow(cvcudaCustomCropSubmit(m_handle, stream, in.handle(), out.handle(), cropRect));
+    nvcv::detail::CheckThrow(cvcudaCustomCropSubmit(m_handle, in.handle(), out.handle(), cropRect));
 }
 
 inline NVCVOperatorHandle CustomCrop::handle() const noexcept

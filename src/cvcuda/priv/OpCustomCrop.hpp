@@ -38,8 +38,8 @@ class CustomCrop final : public IOperator
 public:
     explicit CustomCrop();
 
-    // void operator()(cudaStream_t stream, const nvcv::ITensor &in, const nvcv::ITensor &out,
-    //                 const NVCVRectI &cropRect) const;
+    void operator()(const nvcv::ITensor &in, const nvcv::ITensor &out,
+                    const NVCVRectI &cropRect) const;
 
 private:
     std::unique_ptr<nvcv::legacy::cuda_op::CustomCrop> m_legacyOp;

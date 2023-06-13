@@ -14,7 +14,9 @@
 # limitations under the License.
 
 find_package(cvcuda REQUIRED)
-find_package(CUDAToolkit REQUIRED)
+# find_package(CUDAToolkit REQUIRED)
+find_package(pybind11 REQUIRED)
+include_directories(${pybind11_INCLUDE_DIRS})
 
 nvcv_python_add_module(
     TARGET cvcuda_module_python MODULE
@@ -66,7 +68,7 @@ nvcv_python_add_module(
 
 target_link_libraries(cvcuda_module_python
     PRIVATE
-        CUDA::cudart_static
+        # CUDA::cudart_static
         pynvcv
         nvcv_util_compat
         cvcuda

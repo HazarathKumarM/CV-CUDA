@@ -33,18 +33,18 @@ add_library(nvcv_types SHARED
     ImageFormat.cpp
 )
 
-# target_link_libraries(nvcv_types
-#     PRIVATE
-#         nvcv_types_priv
-#         nvcv_util
-#         nvcv_util_symver
-# )
+target_link_libraries(nvcv_types
+    PRIVATE
+        nvcv_types_priv
+        nvcv_util
+        nvcv_util_symver
+)
 
-# target_include_directories(nvcv_types
-#     PUBLIC
-#         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-#         $<INSTALL_INTERFACE:include>
-# )
+target_include_directories(nvcv_types
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
+)
 
 configure_version(nvcv_types NVCV nvcv ${PROJECT_VERSION})
 configure_symbol_versioning(nvcv_types NVCV nvcv_types)

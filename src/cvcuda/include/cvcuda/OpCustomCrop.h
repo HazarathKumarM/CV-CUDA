@@ -29,10 +29,13 @@
 #include "Operator.h"
 #include "detail/Export.h"
 
-#include <cuda_runtime.h>
-#include <nvcv/Rect.h>
-#include <nvcv/Status.h>
-#include <nvcv/Tensor.h>
+// #include <cuda_runtime.h>
+// #include <nvcv/Rect.h>
+// #include <nvcv/Status.h>
+// #include <nvcv/Tensor.h>
+#include "../../../nvcv_types/include/nvcv/Rect.h"
+#include "../../../nvcv_types/include/nvcv/Status.h"
+#include "../../../nvcv_types/include/nvcv/Tensor.h"
 
 #ifdef __cplusplus
 extern "C"
@@ -112,7 +115,7 @@ CVCUDA_PUBLIC NVCVStatus cvcudaCustomCropCreate(NVCVOperatorHandle *handle);
  * @retval #NVCV_ERROR_INTERNAL         Internal error in the operator, invalid types passed in.
  * @retval #NVCV_SUCCESS                Operation executed successfully.
  */
-CVCUDA_PUBLIC NVCVStatus cvcudaCustomCropSubmit(NVCVOperatorHandle handle, cudaStream_t stream, NVCVTensorHandle in,
+CVCUDA_PUBLIC NVCVStatus cvcudaCustomCropSubmit(NVCVOperatorHandle handle, NVCVTensorHandle in,
                                                 NVCVTensorHandle out, const NVCVRectI cropRect);
 
 #ifdef __cplusplus

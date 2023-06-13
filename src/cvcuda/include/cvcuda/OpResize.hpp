@@ -29,7 +29,7 @@
 #include "IOperator.hpp"
 #include "OpResize.h"
 
-#include <cuda_runtime.h>
+// #include <cuda_runtime.h>
 #include <nvcv/IImageBatch.hpp>
 #include <nvcv/ITensor.hpp>
 #include <nvcv/ImageFormat.hpp>
@@ -44,9 +44,9 @@ public:
 
     ~Resize();
 
-    void operator()(cudaStream_t stream, nvcv::ITensor &in, nvcv::ITensor &out,
+    void operator()( nvcv::ITensor &in, nvcv::ITensor &out,
                     const NVCVInterpolationType interpolation);
-    void operator()(cudaStream_t stream, nvcv::IImageBatchVarShape &in, nvcv::IImageBatchVarShape &out,
+    void operator()(nvcv::IImageBatchVarShape &in, nvcv::IImageBatchVarShape &out,
                     const NVCVInterpolationType interpolation);
 
     virtual NVCVOperatorHandle handle() const noexcept override;
@@ -57,26 +57,26 @@ private:
 
 inline Resize::Resize()
 {
-    nvcv::detail::CheckThrow(cvcudaResizeCreate(&m_handle));
-    assert(m_handle);
+    // nvcv::detail::CheckThrow(cvcudaResizeCreate(&m_handle));
+    // assert(m_handle);
 }
 
 inline Resize::~Resize()
 {
-    nvcvOperatorDestroy(m_handle);
+    // nvcvOperatorDestroy(m_handle);
     m_handle = nullptr;
 }
 
-inline void Resize::operator()(cudaStream_t stream, nvcv::ITensor &in, nvcv::ITensor &out,
+inline void Resize::operator()( nvcv::ITensor &in, nvcv::ITensor &out,
                                const NVCVInterpolationType interpolation)
 {
-    nvcv::detail::CheckThrow(cvcudaResizeSubmit(m_handle, stream, in.handle(), out.handle(), interpolation));
+    // nvcv::detail::CheckThrow(cvcudaResizeSubmit(m_handle, in.handle(), out.handle(), interpolation));
 }
 
-inline void Resize::operator()(cudaStream_t stream, nvcv::IImageBatchVarShape &in, nvcv::IImageBatchVarShape &out,
+inline void Resize::operator()( nvcv::IImageBatchVarShape &in, nvcv::IImageBatchVarShape &out,
                                const NVCVInterpolationType interpolation)
 {
-    nvcv::detail::CheckThrow(cvcudaResizeVarShapeSubmit(m_handle, stream, in.handle(), out.handle(), interpolation));
+    // nvcv::detail::CheckThrow(cvcudaResizeVarShapeSubmit(m_handle, in.handle(), out.handle(), interpolation));
 }
 
 inline NVCVOperatorHandle Resize::handle() const noexcept

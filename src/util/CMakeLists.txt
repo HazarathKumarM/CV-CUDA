@@ -187,13 +187,13 @@ target_include_directories(nvcv_util
         ../core/include
 )
 
-# target_link_libraries(nvcv_util
-#     PUBLIC
-#         nvcv_util_sanitizer
-#         nvcv_types_headers
-#         CUDA::cudart_static
-#         nvcv_util_compat
-# )
+target_link_libraries(nvcv_util
+    PUBLIC
+        nvcv_util_sanitizer
+        nvcv_types_headers
+        # CUDA::cudart_static
+        nvcv_util_compat
+)
 
 target_compile_definitions(nvcv_util
     PUBLIC

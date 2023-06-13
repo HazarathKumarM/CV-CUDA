@@ -53,15 +53,15 @@ add_library(cvcuda SHARED
     OpAdaptiveThreshold.cpp
 )
 
-# target_link_libraries(cvcuda
-#     PUBLIC
-#         CUDA::cudart_static
-#         nvcv_types
-#     PRIVATE
-#         nvcv_util
-#         nvcv_util_symver
-#         cvcuda_priv
-# )
+target_link_libraries(cvcuda
+    PUBLIC
+        # CUDA::cudart_static
+        nvcv_types
+    PRIVATE
+        nvcv_util
+        nvcv_util_symver
+        cvcuda_priv
+)
 
 target_include_directories(cvcuda
     PUBLIC

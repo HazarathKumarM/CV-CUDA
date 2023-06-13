@@ -36,16 +36,16 @@ add_library(nvcv_types_priv STATIC
     ImageFormat.cpp
 )
 
-# target_include_directories(nvcv_types_priv
-#     PUBLIC
-#         ../..
-# )
+target_include_directories(nvcv_types_priv
+    PUBLIC
+        ../..
+)
 
-# target_compile_definitions(nvcv_types_priv PUBLIC -DNVCV_EXPORTING=1)
+target_compile_definitions(nvcv_types_priv PUBLIC -DNVCV_EXPORTING=1)
 
-# target_link_libraries(nvcv_types_priv
-#     PUBLIC
-#         nvcv_types_headers
-#         nvcv_util_sanitizer
-#         CUDA::cudart_static
-# )
+target_link_libraries(nvcv_types_priv
+    PUBLIC
+        nvcv_types_headers
+        nvcv_util_sanitizer
+        # CUDA::cudart_static
+)

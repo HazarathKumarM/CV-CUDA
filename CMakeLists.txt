@@ -27,6 +27,10 @@ project(cvcuda
         DESCRIPTION "CUDA-accelerated Computer Vision algorithms"
 )
 
+if(NOT CMAKE_INSTALL_LIBDIR)
+    set(CMAKE_INSTALL_LIBDIR lib)
+endif()
+
 # Make sure the cuda host compiler agrees with what we're using,
 # unless user overwrites it (at their own risk).
 if(NOT CMAKE_CUDA_HOST_COMPILER)

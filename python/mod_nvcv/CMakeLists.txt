@@ -16,11 +16,15 @@
 # ``option()`` honors normal variables.
 # needed so that we can override the dlpack project options
 # and have it build only what we need.
+find_package(pybind11 REQUIRED)
+# find_package(dlpack /media/CV_CUDA/python/build/dlpack/build)
+include_directories(${pybind11_INCLUDE_DIRS})
+
 set(save_policy_0077 ${CMAKE_POLICY_DEFAULT_CMP0077})
 set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
 set(BUILD_MOCK OFF)
 set(BUILD_DOCS OFF)
-add_subdirectory(${DLPACK_SOURCE_DIR} dlpack)
+# add_subdirectory(${DLPACK_SOURCE_DIR} dlpack)
 set(CMAKE_POLICY_DEFAULT_CMP0077 ${save_policy_0077})
 
 set(imgformat_defs ${CMAKE_CURRENT_BINARY_DIR}/NVCVPythonImageFormatDefs.inc)
@@ -70,14 +74,14 @@ target_include_directories(nvcv_module_python
         ${CMAKE_CURRENT_BINARY_DIR}
 )
 
-find_package(CUDAToolkit REQUIRED)
+# find_package(CUDAToolkit REQUIRED)
 
 target_link_libraries(nvcv_module_python
     PRIVATE
         nvcv_types
         nvcv_util_compat
         nvcv_python_common
-        CUDA::cudart_static
+        # CUDA::cudart_static
         dlpack::dlpack
 )
 
