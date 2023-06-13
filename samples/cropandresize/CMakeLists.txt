@@ -13,14 +13,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-find_package(CUDA REQUIRED)
+# find_package(CUDA REQUIRED)
+
+set(nvcv_types_priv /media/CV-CUDA/build/src/nvcv_types/priv/)
 
 set(CMAKE_CXX_FLAGS "-Wno-deprecated-enum-enum-conversion")
 
 # tag: Build crop and resize sample
 
 add_executable(nvcv_samples_cropandresize Main.cpp)
-target_link_libraries(nvcv_samples_cropandresize nvcv_types cvcuda CUDA::cudart nvcv_samples_common)
+target_link_libraries(nvcv_samples_cropandresize nvcv_types cvcuda nvcv_types_priv nvcv_util nvcv_util_sanitizer cvcuda_priv
+# nvcv_samples_common
+)
 
 target_include_directories(nvcv_samples_cropandresize
 	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)

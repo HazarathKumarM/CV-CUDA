@@ -15,15 +15,20 @@
  * limitations under the License.
  */
 
-#include <common/NvDecoder.h>
-#include <common/TestUtils.h>
-#include <cuda_runtime_api.h>
-#include <cvcuda/OpCustomCrop.hpp>
-#include <cvcuda/OpResize.hpp>
+// #include <common/NvDecoder.h>
+// #include <common/TestUtils.h>
+// #include <cuda_runtime_api.h>
+// #include <cvcuda/OpCustomCrop.hpp>
+#include "../../src/cvcuda/include/cvcuda/OpCustomCrop.hpp"
+// #include <cvcuda/OpResize.hpp>
+#include "../../src/cvcuda/include/cvcuda/OpResize.hpp"
 #include <getopt.h>
 #include <math.h>
-#include <nvcv/Image.hpp>
-#include <nvcv/Tensor.hpp>
+// #include <nvcv/Image.hpp>
+// #include <nvcv/Tensor.hpp>
+#include "../../src/nvcv_types/include/nvcv/Image.hpp"
+#include "../../src/nvcv_types/include/nvcv/Tensor.hpp"
+#include <fstream>
 
 /**
  * @brief Crop and Resize sample app.
@@ -115,8 +120,8 @@ int main(int argc, char *argv[])
     int maxChannels    = 3;
 
     // tag: Create the cuda stream
-    cudaStream_t stream;
-    CHECK_CUDA_ERROR(cudaStreamCreate(&stream));
+    // cudaStream_t stream;
+    // CHECK_CUDA_ERROR(cudaStreamCreate(&stream));
 
     // tag: Allocate input tensor
     // Allocating memory for RGBI input image batch of uint8_t data type
@@ -128,7 +133,7 @@ int main(int argc, char *argv[])
     inBuf.strides[2] = maxChannels * inBuf.strides[3];
     inBuf.strides[1] = maxImageWidth * inBuf.strides[2];
     inBuf.strides[0] = maxImageHeight * inBuf.strides[1];
-    CHECK_CUDA_ERROR(cudaMallocAsync(&inBuf.basePtr, batchSize * inBuf.strides[0], stream));
+    // CHECK_CUDA_ERROR(cudaMallocAsync(&inBuf.basePtr, batchSize * inBuf.strides[0], stream));
 
     // tag: Tensor Requirements
     // Calculate the requirements for the RGBI uint8_t Tensor which include
@@ -149,9 +154,9 @@ int main(int argc, char *argv[])
     // The total images is set to the same value as batch size for testing
     uint32_t             totalImages = batchSize;
     // Format in which the decoded output will be saved
-    nvjpegOutputFormat_t outputFormat = NVJPEG_OUTPUT_RGBI;
+    // nvjpegOutputFormat_t outputFormat = NVJPEG_OUTPUT_RGBI;
 
-    NvDecode(imagePath, batchSize, totalImages, outputFormat, gpuInput);
+    // NvDecode(imagePath, batchSize, totalImages, outputFormat, gpuInput);
 
     // tag: The input buffer is now ready to be used by the operators
 
@@ -186,10 +191,10 @@ int main(int argc, char *argv[])
     cvcuda::Resize     resizeOp;
 
     // tag: Executes the CustomCrop operation on the given cuda stream
-    cropOp(stream, inTensor, cropTensor, crpRect);
+    cropOp(inTensor, cropTensor, crpRect);
 
     // Resize operator can now be enqueued into the same stream
-    resizeOp(stream, cropTensor, resizedTensor, NVCV_INTERP_LINEAR);
+    // resizeOp(cropTensor, resizedTensor, NVCV_INTERP_LINEAR);
 
     // tag: Profile section
 #ifdef PROFILE_SAMPLE
@@ -201,10 +206,10 @@ int main(int argc, char *argv[])
 #endif
 
     // tag: Copy the buffer to CPU and write resized image into .bmp file
-    WriteRGBITensor(resizedTensor, stream);
+    // WriteRGBITensor(resizedTensor, stream);
 
     // tag: Clean up
-    CHECK_CUDA_ERROR(cudaStreamDestroy(stream));
+    // CHECK_CUDA_ERROR(cudaStreamDestroy(stream));
 
     // tag: End of Sample
 }
