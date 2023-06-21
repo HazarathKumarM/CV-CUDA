@@ -76,7 +76,7 @@ target_link_libraries(cvcuda_headers INTERFACE nvcv_types_headers)
 
 configure_version(cvcuda CVCUDA cvcuda ${PROJECT_VERSION})
 configure_symbol_versioning(cvcuda CVCUDA cvcuda)
-# setup_dso(cvcu[da ${PROJECT_VERSION})
+setup_dso(cvcuda ${PROJECT_VERSION})
 
 target_compile_definitions(cvcuda PRIVATE -DCVCUDA_EXPORTING=1)
 
